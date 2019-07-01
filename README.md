@@ -2,6 +2,18 @@
 
 An extensible and lightweight object which defines how your objects are viewed.
 
+[![Gem Version](https://badge.fury.io/rb/material.svg)](https://badge.fury.io/rb/material)
+[![Build Status](https://semaphoreci.com/api/v1/freshly/material/branches/develop/badge.svg)](https://semaphoreci.com/freshly/material)
+[![Maintainability](https://api.codeclimate.com/v1/badges/fbdaeaf118a16a55ab7d/maintainability)](https://codeclimate.com/github/Freshly/batch_processor/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/fbdaeaf118a16a55ab7d/test_coverage)](https://codeclimate.com/github/Freshly/batch_processor/test_coverage)
+
+* [Material](#material)
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [Development](#development)
+  * [Contributing](#contributing)
+  * [License](#license)
+
 ## Installation
 
 Add this line to your application's Gemfile:
