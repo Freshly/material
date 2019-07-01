@@ -4,8 +4,8 @@ An extensible and lightweight object which defines how your objects are viewed.
 
 [![Gem Version](https://badge.fury.io/rb/material.svg)](https://badge.fury.io/rb/material)
 [![Build Status](https://semaphoreci.com/api/v1/freshly/material/branches/develop/badge.svg)](https://semaphoreci.com/freshly/material)
-[![Maintainability](https://api.codeclimate.com/v1/badges/fbdaeaf118a16a55ab7d/maintainability)](https://codeclimate.com/github/Freshly/batch_processor/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/fbdaeaf118a16a55ab7d/test_coverage)](https://codeclimate.com/github/Freshly/batch_processor/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/eca5499715d9a32c5616/maintainability)](https://codeclimate.com/github/Freshly/material/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/eca5499715d9a32c5616/test_coverage)](https://codeclimate.com/github/Freshly/material/test_coverage)
 
 * [Material](#material)
   * [Installation](#installation)
