@@ -27,4 +27,5 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "rspice", ">= 0.13.3", "< 1.0"
   spec.add_development_dependency "spicerack-styleguide", ">= 0.13.3", "< 1.0"
+  spec.add_development_dependency "shoulda-matchers", "4.0.1"
 end
