@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 require "material/version"
 
-module Material
-  class Error < StandardError; end
-  # Your code goes here...
-end
+require "active_support"
+
+module Material; end

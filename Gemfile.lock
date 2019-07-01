@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     material (0.1.0)
+      activesupport (~> 5.2.1)
       spicerack (>= 0.14.2, < 1.0)
 
 GEM
