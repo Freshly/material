@@ -7,6 +7,7 @@ require "simplecov"
 require "timecop"
 
 require "spicerack/spec_helper"
+require "shoulda-matchers"
 
 SimpleCov.start do
   add_filter "/spec/"
@@ -14,6 +15,8 @@ SimpleCov.start do
 end
 
 require "material"
+
+require_relative "support/shared_context/with_an_example_material"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -30,4 +33,10 @@ RSpec.configure do |config|
   config.before(:each, type: :integration) { Timecop.freeze(Time.now.round) }
 
   config.after(:each) { Timecop.return }
+end
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+  end
 end
