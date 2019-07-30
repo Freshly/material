@@ -1,14 +1,18 @@
 # frozen_string_literal: true
 
 module Material
-  class Object < Spicerack::AttributeObject
-    attr_reader :source
+  module Core
+    extend ActiveSupport::Concern
 
-    delegate :name, to: :class, prefix: true
+    included do
+      attr_reader :source
 
-    delegate_missing_to :source
+      delegate :name, to: :class, prefix: true
 
-    class << self
+      delegate_missing_to :source
+    end
+
+    class_methods do
       private
 
       def references(field, as:, from: :source)

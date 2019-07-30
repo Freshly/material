@@ -3,7 +3,7 @@
 RSpec.shared_context "with an example material" do
   subject(:example_material) { example_material_class.new(source) }
 
-  let(:example_material_class) { Class.new(Material::Object) }
+  let(:example_material_class) { Class.new(Material::Base) }
 
   let(:source) { double }
 
