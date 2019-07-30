@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Material::Object, type: :material do
+RSpec.describe Material::Core, type: :concern do
   include_context "with an example material"
 
-  it { is_expected.to inherit_from Spicerack::AttributeObject }
   it { is_expected.to delegate_method(:name).to(:class).with_prefix(true) }
 
   describe "#initialize" do
@@ -37,7 +36,7 @@ RSpec.describe Material::Object, type: :material do
 
     context "with a defined method" do
       let(:example_material_class) do
-        Class.new(Material::Object) do
+        Class.new(Material::Base) do
           def some_method
             :some_value
           end
