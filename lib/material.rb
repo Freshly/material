@@ -6,6 +6,6 @@ require "spicerack"
 
 require "material/version"
 
-require "material/base"
+require "material/object"
 
 module Material; end
