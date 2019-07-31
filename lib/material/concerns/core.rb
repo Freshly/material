@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Material is a component framework for defining the presentation layer of an application
 module Material
   module Core
     extend ActiveSupport::Concern
