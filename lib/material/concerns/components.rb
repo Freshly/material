@@ -20,6 +20,23 @@ module Material
 
       def register_component(key, **options, &block)
         _components[key] = Component.new(**options, &block)
+        define_component_configurator(key)
+        define_component_reader(key)
+        define_component_value_reader(key)
+      end
+
+      def define_component_configurator(key)
+        define_singleton_method("define_#{key}".to_sym) do |**options, &block|
+          _components[key].configure(**options, &block)
+        end
+      end
+
+      def define_component_reader(key)
+        define_singleton_method("#{key}_component".to_sym) { _components[key] }
+      end
+
+      def define_component_value_reader(key)
+        define_method(key) { _components[key].value_for(self) }
       end
     end
 
@@ -31,8 +48,8 @@ module Material
         configure(**options, &block)
       end
 
-      def value
-        instance_eval(&@value).dup if @value.respond_to?(:call)
+      def value_for(object)
+        object.instance_eval(&@value).dup if @value.respond_to?(:call)
       end
 
       def configure(**opts, &block)

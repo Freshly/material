@@ -20,7 +20,7 @@ RSpec.describe Material::Components::Component, type: :subclass do
 
     shared_examples_for "blocks can be assigned" do
       let(:block) do
-        -> { :default_value }
+        -> { :block_value }
       end
 
       it { is_expected.to eq block }
@@ -63,8 +63,11 @@ RSpec.describe Material::Components::Component, type: :subclass do
     end
   end
 
-  describe "#value" do
-    subject { instance.value }
+  describe "#value_for" do
+    subject { instance.value_for(object) }
+
+    let(:duplicate) { double }
+    let(:object) { double(dup: duplicate) }
 
     context "without a block" do
       let(:instance) { described_class.new }
@@ -74,11 +77,100 @@ RSpec.describe Material::Components::Component, type: :subclass do
 
     context "with a block" do
       let(:instance) { described_class.new(&block) }
-      let(:block) do
-        proc { Struct.new(:dup).new(:duplicated_value) }
+
+      context "without args" do
+        let(:block) do
+          proc { Struct.new(:dup).new(:duplicated_value) }
+        end
+
+        it { is_expected.to eq :duplicated_value }
       end
 
-      it { is_expected.to eq :duplicated_value }
+      context "with args" do
+        let(:block) do
+          proc { self }
+        end
+
+        it { is_expected.to eq duplicate }
+      end
+    end
+  end
+
+  describe "#configure" do
+    shared_examples_for "the component is configured properly" do
+      let(:original_options) { {} }
+      let(:options) { Hash[*Faker::Lorem.words(4)].symbolize_keys }
+      let(:original_block) { nil }
+      let(:block) do
+        -> { :block_value }
+      end
+
+      context "without arguments" do
+        subject(:configure) { instance.configure }
+
+        it "does not raise" do
+          expect { configure }.not_to raise_error
+        end
+      end
+
+      context "with only options" do
+        subject(:configure) { instance.configure(**options) }
+
+        it "updates options" do
+          expect { configure }.to change { instance.options }.from(original_options).to(original_options.merge(options))
+        end
+      end
+
+      context "with only block" do
+        subject(:configure) { instance.configure(&block) }
+
+        it "updates value" do
+          expect { configure }.to change { instance.instance_variable_get(:@value) }.from(original_block).to(block)
+        end
+      end
+
+      context "with options and block" do
+        subject(:configure) { instance.configure(**options, &block) }
+
+        it "updates value" do
+          expect { configure }.
+            to change { instance.options }.from(original_options).to(original_options.merge(options)).
+            and change { instance.instance_variable_get(:@value) }.from(original_block).to(block)
+        end
+      end
+    end
+
+    context "without defaults" do
+      it_behaves_like "the component is configured properly" do
+        let(:instance) { described_class.new }
+      end
+    end
+
+    context "with only original block" do
+      it_behaves_like "the component is configured properly" do
+        let(:instance) { described_class.new(&original_block) }
+        let(:original_block) do
+          -> { :original_value }
+        end
+      end
+    end
+
+    context "with only original options" do
+      it_behaves_like "the component is configured properly" do
+        let(:instance) { described_class.new(**original_options) }
+        let(:original_options) { Hash[Faker::Lorem.word.to_sym, SecureRandom.hex] }
+      end
+    end
+
+    context "with original options and block" do
+      it_behaves_like "the component is configured properly" do
+        let(:instance) { described_class.new(**original_options, &original_block) }
+        let(:original_options) { Hash[Faker::Lorem.word.to_sym, SecureRandom.hex] }
+        let(:options) { Hash[original_options.keys.first, SecureRandom.hex] }
+        let(:original_block) do
+          -> { :original_value }
+        end
+      end
     end
   end
 end
