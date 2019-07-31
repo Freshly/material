@@ -9,6 +9,8 @@ require "timecop"
 require "spicerack/spec_helper"
 require "shoulda-matchers"
 
+require_relative "../lib/material/spec_helper"
+
 SimpleCov.start do
   add_filter "/spec/"
   add_filter "/rspec/"
@@ -17,6 +19,12 @@ end
 require "material"
 
 require_relative "support/shared_context/with_an_example_material"
+
+require_relative "support/test_classes/test_material"
+require_relative "support/test_classes/foo_material"
+require_relative "support/test_classes/user_material"
+require_relative "support/test_classes/bar_material"
+require_relative "support/test_classes/baz_gaz_material"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

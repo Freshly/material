@@ -4,73 +4,108 @@ RSpec.describe Material::Components, type: :module do
   include_context "with an example material"
 
   describe ".register_component" do
-    let(:attribute) { Faker::Lorem.word.to_sym }
+    let(:component_name) { Faker::Lorem.word.to_sym }
 
-    describe "defines default" do
-      let(:instance) { instance_double(described_class::Component) }
-      let(:expected_components) { Hash[attribute, instance] }
-      let(:options) { {} }
+    let(:instance) { instance_double(described_class::Component) }
+    let(:expected_components) { Hash[component_name, instance] }
+    let(:options) { {} }
 
-      shared_examples_for "a default is defined" do
-        it "adds to _defaults" do
-          expect { register_component }.
-            to change { example_material_class._components }.
-            from({}).
-            to(expected_components)
-        end
+    shared_examples_for "a component configurator is defined" do
+      subject(:define_component) do
+        example_material_class.__send__("define_#{component_name}".to_sym, **example_options, &example_block)
       end
 
-      context "when no block is given" do
-        before { allow(described_class::Component).to receive(:new).with(**options).and_return(instance) }
-
-        context "without options" do
-          subject(:register_component) { example_material_class.__send__(:register_component, attribute) }
-
-          it_behaves_like "a default is defined"
-        end
-
-        context "with options" do
-          subject(:register_component) { example_material_class.__send__(:register_component, attribute, **options) }
-
-          context "when empty" do
-            it_behaves_like "a default is defined"
-          end
-
-          context "when present" do
-            let(:options) { Hash[*Faker::Lorem.words(4)].symbolize_keys }
-
-            it_behaves_like "a default is defined"
-          end
-        end
+      let(:result) { double }
+      let(:example_options) { Hash[*Faker::Lorem.words(4)].symbolize_keys }
+      let(:example_block) do
+        proc { :block_value }
       end
 
-      context "when a block is given" do
-        let(:block) do
-          ->(_) { :block }
+      before do
+        register_component
+        allow(instance).to receive(:configure)
+      end
+
+      it "calls configure" do
+        define_component
+        expect(instance).to have_received(:configure).with(**example_options, &example_block)
+      end
+    end
+
+    shared_examples_for "a component is registered" do
+      let(:value) { double }
+
+      before { allow(instance).to receive(:value_for).with(example_material).and_return(value) }
+
+      it "adds to _components" do
+        expect { register_component }.
+          to change { example_material_class._components }.
+          to(hash_including(expected_components))
+      end
+
+      it "defines a reader" do
+        register_component
+        expect(example_material_class.public_send("#{component_name}_component".to_sym)).to eq instance
+      end
+
+      it "defines a value reader" do
+        register_component
+        expect(example_material.public_send(component_name)).to eq value
+      end
+
+      it_behaves_like "a component configurator is defined"
+    end
+
+    context "when no block is given" do
+      before { allow(described_class::Component).to receive(:new).with(**options).and_return(instance) }
+
+      context "without options" do
+        subject(:register_component) { example_material_class.__send__(:register_component, component_name) }
+
+        it_behaves_like "a component is registered"
+      end
+
+      context "with options" do
+        subject(:register_component) { example_material_class.__send__(:register_component, component_name, **options) }
+
+        context "when empty" do
+          it_behaves_like "a component is registered"
         end
 
-        before { allow(described_class::Component).to receive(:new).with(**options, &block).and_return(instance) }
+        context "when present" do
+          let(:options) { Hash[*Faker::Lorem.words(4)].symbolize_keys }
 
-        context "without options" do
-          subject(:register_component) { example_material_class.__send__(:register_component, attribute, &block) }
+          it_behaves_like "a component is registered"
+        end
+      end
+    end
 
-          it_behaves_like "a default is defined"
+    context "when a block is given" do
+      let(:block) do
+        ->(_) { :block }
+      end
+
+      before { allow(described_class::Component).to receive(:new).with(**options, &block).and_return(instance) }
+
+      context "without options" do
+        subject(:register_component) { example_material_class.__send__(:register_component, component_name, &block) }
+
+        it_behaves_like "a component is registered"
+      end
+
+      context "with options" do
+        subject(:register_component) do
+          example_material_class.__send__(:register_component, component_name, **options, &block)
         end
 
-        context "with options" do
-          subject(:register_component) do
-            example_material_class.__send__(:register_component, attribute, **options, &block)
-          end
+        context "when empty" do
+          it_behaves_like "a component is registered"
+        end
 
-          context "when empty" do
-            it_behaves_like "a default is defined"
-          end
+        context "when present" do
+          let(:options) { Hash[*Faker::Lorem.words(4)].symbolize_keys }
 
-          context "when present" do
-            let(:options) { Hash[*Faker::Lorem.words(4)].symbolize_keys }
-
-            it_behaves_like "a default is defined"
-          end
+          it_behaves_like "a component is registered"
         end
       end
     end
@@ -78,7 +113,7 @@ RSpec.describe Material::Components, type: :module do
 
   describe ".inherited" do
     it_behaves_like "an inherited property", :register_component, :_components do
-      let(:root_class) { example_material_class }
+      let(:root_class) { Class.new.tap { |klass| klass.include described_class } }
       let(:expected_attribute_value) do
         expected_property_value.each_with_object({}) do |option, hash|
           hash[option] = instance_of(described_class::Component)
