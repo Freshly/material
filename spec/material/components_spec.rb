@@ -46,11 +46,34 @@ RSpec.describe Material::Components, type: :module do
       it "defines a reader" do
         register_component
         expect(example_material_class.public_send("#{component_name}_component".to_sym)).to eq instance
+        expect(example_material.public_send("#{component_name}_component".to_sym)).to eq instance
       end
 
       it "defines a value reader" do
         register_component
+        expect(example_material.public_send("#{component_name}_value".to_sym)).to eq value
         expect(example_material.public_send(component_name)).to eq value
+      end
+
+      shared_examples_for "defines a component predicate" do
+        it "defines a value predicate" do
+          register_component
+          expect(example_material.public_send("#{component_name}_value?".to_sym)).to eq expected_value
+          expect(example_material.public_send("#{component_name}?".to_sym)).to eq expected_value
+        end
+      end
+
+      context "with a value" do
+        it_behaves_like "defines a component predicate" do
+          let(:expected_value) { true }
+        end
+      end
+
+      context "with no value" do
+        it_behaves_like "defines a component predicate" do
+          let(:value) { nil }
+          let(:expected_value) { false }
+        end
       end
 
       it_behaves_like "a component configurator is defined"
@@ -113,7 +136,7 @@ RSpec.describe Material::Components, type: :module do
 
   describe ".inherited" do
     it_behaves_like "an inherited property", :register_component, :_components do
-      let(:root_class) { Class.new.tap { |klass| klass.include described_class } }
+      let(:root_class) { Class.new(Spicerack::AttributeObject).tap { |klass| klass.include described_class } }
       let(:expected_attribute_value) do
         expected_property_value.each_with_object({}) do |option, hash|
           hash[option] = instance_of(described_class::Component)
