@@ -6,7 +6,7 @@ module Material
 
     included do
       register_component :icon
-      register_component :icon_i18n
+      register_component :icon_title
     end
   end
 end

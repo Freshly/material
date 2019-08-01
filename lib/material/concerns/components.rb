@@ -23,6 +23,7 @@ module Material
         define_component_configurator(key)
         define_component_reader(key)
         define_component_value_reader(key)
+        define_component_predicate(key)
       end
 
       def define_component_configurator(key)
@@ -32,11 +33,22 @@ module Material
       end
 
       def define_component_reader(key)
-        define_singleton_method("#{key}_component".to_sym) { _components[key] }
+        method_name = "#{key}_component".to_sym
+        define_singleton_method(method_name) { _components[key] }
+        delegate method_name, to: :class
       end
 
       def define_component_value_reader(key)
-        define_method(key) { _components[key].value_for(self) }
+        method_name = "#{key}_value".to_sym
+        define_method(method_name) { _components[key].value_for(self) }
+        memoize method_name
+        alias_method key, method_name unless method_defined?(key)
+      end
+
+      def define_component_predicate(key)
+        method_name = "#{key}_value?".to_sym
+        define_method(method_name) { public_send("#{key}_value".to_sym).present? }
+        alias_method "#{key}?".to_sym, method_name
       end
     end
 
@@ -55,6 +67,12 @@ module Material
       def configure(**opts, &block)
         @value = block if block_given?
         options.merge!(**opts)
+      end
+
+      def initialize_copy(other)
+        super
+        @options = @options.dup
+        @value = @value.dup if @value.present?
       end
     end
   end

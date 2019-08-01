@@ -13,9 +13,39 @@ RSpec.describe BazGazMaterial, type: :material do
     it { is_expected.to eq :baz_gaz }
   end
 
-  describe "#icon_i18n" do
-    subject { material.icon_i18n }
+  describe "#icon_title" do
+    subject { material.icon_title }
 
     it { is_expected.to eq "icons.baz_gaz" }
+  end
+
+  describe "#title" do
+    subject { material.title }
+
+    it { is_expected.to eq "Baz Gaz" }
+  end
+
+  describe "#list_title" do
+    subject { material.list_title }
+
+    it { is_expected.to eq "Baz Gaz" }
+  end
+
+  describe "#header_title" do
+    subject { material.header_title }
+
+    it { is_expected.to eq "Baz Gaz" }
+  end
+
+  describe "#reference_title" do
+    subject { material.reference_title }
+
+    it { is_expected.to eq "Baz Gaz" }
+  end
+
+  describe "#breadcrumb_title" do
+    subject { material.breadcrumb_title }
+
+    it { is_expected.to eq "Baz Gaz" }
   end
 end
