@@ -36,9 +36,7 @@ module Material
     end
 
     included do
-      register_truncator(:title, Float::INFINITY) do
-        source.try(:title) || source.try(:name) || self.class.try(:model_name)&.human || self.class.name
-      end
+      register_truncator(:title) { source.try(:name) || self.class.try(:model_name)&.human || self.class.name }
 
       register_title_truncator :list_title
       register_title_truncator :header_title

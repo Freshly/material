@@ -5,9 +5,11 @@ RSpec.describe Material::Text, type: :concern do
 
   let(:default_truncate_length) { described_class::DEFAULT_TRUNCATE_LENGTH }
 
-  it { is_expected.to have_material_component(:title).with_options(max_length: Float::INFINITY) }
+  it { is_expected.to have_material_component(:title).with_options(max_length: default_truncate_length) }
   it { is_expected.to have_material_component(:list_title).with_options(max_length: default_truncate_length) }
   it { is_expected.to have_material_component(:header_title).with_options(max_length: default_truncate_length) }
+  it { is_expected.to have_material_component(:reference_title).with_options(max_length: default_truncate_length) }
+  it { is_expected.to have_material_component(:breadcrumb_title).with_options(max_length: default_truncate_length) }
 
   shared_examples_for "truncated text" do |key|
     subject { example_material.public_send(key) }
@@ -63,15 +65,8 @@ RSpec.describe Material::Text, type: :concern do
       let(:source_model_name) { nil }
 
       before do
-        allow(source).to receive(:title).and_return(source_title)
         allow(source).to receive(:name).and_return(source_name)
         allow(source.class).to receive(:model_name).and_return(source_model_name)
-      end
-
-      context "when the source has a title" do
-        let(:source_title) { SecureRandom.hex }
-
-        it { is_expected.to eq source_title }
       end
 
       context "when the source has a name" do
