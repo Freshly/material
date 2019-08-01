@@ -43,6 +43,7 @@ module Material
       register_title_truncator :list_title
       register_title_truncator :header_title
       register_title_truncator :reference_title
+      register_title_truncator :breadcrumb_title
     end
   end
 end

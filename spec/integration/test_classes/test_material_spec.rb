@@ -13,8 +13,8 @@ RSpec.describe TestMaterial, type: :material do
     it { is_expected.to eq :question }
   end
 
-  describe "#icon_i18n" do
-    subject { material.icon_i18n }
+  describe "#icon_title" do
+    subject { material.icon_title }
 
     it { is_expected.to be_nil }
   end

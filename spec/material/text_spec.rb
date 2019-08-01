@@ -54,6 +54,43 @@ RSpec.describe Material::Text, type: :concern do
 
   describe ".title" do
     it_behaves_like "truncated text", :title
+
+    define "default value" do
+      subject { example_material.title }
+
+      let(:source_title) { nil }
+      let(:source_name) { nil }
+      let(:source_model_name) { nil }
+
+      before do
+        allow(source).to receive(:title).and_return(source_title)
+        allow(source).to receive(:name).and_return(source_name)
+        allow(source.class).to receive(:model_name).and_return(source_model_name)
+      end
+
+      context "when the source has a title" do
+        let(:source_title) { SecureRandom.hex }
+
+        it { is_expected.to eq source_title }
+      end
+
+      context "when the source has a name" do
+        let(:source_name) { SecureRandom.hex }
+
+        it { is_expected.to eq source_name }
+      end
+
+      context "when the source has a model_name" do
+        let(:human_model_name) { SecureRandom.hex }
+        let(:source_model_name) { double(human: human_model_name) }
+
+        it { is_expected.to eq human_model_name }
+      end
+
+      context "when none of the other conditions are met" do
+        it { is_expected.to eq source.class.name }
+      end
+    end
   end
 
   describe ".list_title" do
@@ -66,5 +103,9 @@ RSpec.describe Material::Text, type: :concern do
 
   describe ".reference_title" do
     it_behaves_like "a truncated title component", :reference_title
+  end
+
+  describe ".breadcrumb_title" do
+    it_behaves_like "a truncated title component", :breadcrumb_title
   end
 end
