@@ -1,6 +1,11 @@
+# frozen_string_literal: true
+
+require "active_support"
+
+require "spicerack"
+
 require "material/version"
 
-module Material
-  class Error < StandardError; end
-  # Your code goes here...
-end
+require "material/base"
+
+module Material; end
