@@ -25,6 +25,12 @@ RSpec.describe BazGazMaterial, type: :material do
     it { is_expected.to eq "Baz Gaz" }
   end
 
+  describe "#parameterized_title" do
+    subject { material.parameterized_title }
+
+    it { is_expected.to eq "baz-gaz" }
+  end
+
   describe "#list_title" do
     subject { material.list_title }
 

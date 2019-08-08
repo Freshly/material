@@ -34,6 +34,12 @@ RSpec.describe UserList, type: :list do
     it { is_expected.to eq "UserMaterials" }
   end
 
+  describe "#parameterized_title" do
+    subject { list.parameterized_title }
+
+    it { is_expected.to eq "user_materials" }
+  end
+
   describe "#list_title" do
     subject { list.list_title }
 

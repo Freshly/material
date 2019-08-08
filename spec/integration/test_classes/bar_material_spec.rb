@@ -25,6 +25,12 @@ RSpec.describe BarMaterial, type: :material do
     it { is_expected.to eq "Bar" }
   end
 
+  describe "#parameterized_title" do
+    subject { material.parameterized_title }
+
+    it { is_expected.to eq "bar" }
+  end
+
   describe "#list_title" do
     subject { material.list_title }
 

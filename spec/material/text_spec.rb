@@ -6,6 +6,7 @@ RSpec.describe Material::Text, type: :concern do
   let(:default_truncate_length) { described_class::DEFAULT_TRUNCATE_LENGTH }
 
   it { is_expected.to have_material_component(:title).with_options(max_length: default_truncate_length) }
+  it { is_expected.to have_material_component(:parameterized_title) }
   it { is_expected.to have_material_component(:list_title).with_options(max_length: default_truncate_length) }
   it { is_expected.to have_material_component(:header_title).with_options(max_length: default_truncate_length) }
   it { is_expected.to have_material_component(:reference_title).with_options(max_length: default_truncate_length) }
@@ -72,6 +73,17 @@ RSpec.describe Material::Text, type: :concern do
 
   describe ".breadcrumb_title" do
     it_behaves_like "a truncated title component", :breadcrumb_title
+  end
+
+  describe ".parameterized_title" do
+    subject { example_material.parameterized_title }
+
+    let(:title_value) { title_words.join("") }
+    let(:title_words) { Faker::Lorem.words.map(&:capitalize) }
+
+    before { allow(example_material).to receive(:title_value).and_return(title_value) }
+
+    it { is_expected.to eq title_words.map(&:downcase).join("_") }
   end
 
   define "#default_title" do

@@ -37,6 +37,12 @@ RSpec.describe FooList, type: :list do
     it { is_expected.to eq "Foo" }
   end
 
+  describe "#parameterized_title" do
+    subject { list.parameterized_title }
+
+    it { is_expected.to eq "foo" }
+  end
+
   describe "#list_title" do
     subject { list.list_title }
 
