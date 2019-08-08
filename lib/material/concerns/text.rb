@@ -42,12 +42,12 @@ module Material
       register_title_truncator :header_title
       register_title_truncator :reference_title
       register_title_truncator :breadcrumb_title
-    end
 
-    private
+      private
 
-    def default_title
-      source.try(:name) || self.class.try(:model_name)&.human || self.class.name
+      def default_title
+        source.try(:name) || self.class.try(:model_name)&.human || self.class.name
+      end
     end
   end
 end
