@@ -9,6 +9,7 @@ module Material
     include Material::Components
     include Material::Icon
     include Material::Text
+    include Material::Page
 
     def default_title
       (item_class.try(:model_name)&.human || item_class&.name).pluralize || self.class.name

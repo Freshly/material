@@ -38,6 +38,8 @@ module Material
     included do
       register_truncator(:title) { default_title }
 
+      register_component(:parameterized_title) { title_value.underscore.parameterize }
+
       register_title_truncator :list_title
       register_title_truncator :header_title
       register_title_truncator :reference_title
