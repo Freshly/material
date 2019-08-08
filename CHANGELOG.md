@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1
+
+*Release Date*: 08/08/2019
+
+- `Material::List` with text and icons
+
 ## 0.2.0
 
 *Release Date*: 02/08/2019
