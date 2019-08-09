@@ -18,7 +18,10 @@ end
 
 require "material"
 
+require_relative "support/shared_context/with_an_example_list"
 require_relative "support/shared_context/with_an_example_material"
+
+require_relative "support/shared_examples/a_material_lookup"
 
 require_relative "support/test_classes/test_material"
 require_relative "support/test_classes/foo_material"

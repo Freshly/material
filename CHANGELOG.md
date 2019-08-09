@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.3
+
+*Release Date*: 08/09/2019
+
+- `Material::For`
+- Actually exposed any code 😅
+
 ## 0.2.2
 
 *Release Date*: 08/09/2019

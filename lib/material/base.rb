@@ -7,5 +7,10 @@ module Material
     include Material::Icon
     include Material::Text
     include Material::Page
+    include Material::For
+
+    def self.for(object)
+      material_class_for(object, "Material")
+    end
   end
 end
