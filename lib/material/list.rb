@@ -10,6 +10,11 @@ module Material
     include Material::Icon
     include Material::Text
     include Material::Page
+    include Material::For
+
+    def self.for(object)
+      material_class_for(object, "List")
+    end
 
     def default_title
       (item_class.try(:model_name)&.human || item_class&.name).pluralize || self.class.name

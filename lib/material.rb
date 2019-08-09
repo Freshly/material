@@ -9,6 +9,7 @@ require_relative "material/concerns/core"
 require_relative "material/concerns/icon"
 require_relative "material/concerns/text"
 require_relative "material/concerns/page"
+require_relative "material/concerns/for"
 
 require "material/version"
 
