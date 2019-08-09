@@ -6,7 +6,7 @@ RSpec.shared_examples_for "a material lookup" do
   context "with object#material_class" do
     let(:object) { double(material_class: example_class) }
 
-    it { is_expected.to eq example_class }
+    it { is_expected.to be_an_instance_of example_class }
   end
 
   context "with object.material_class" do
@@ -19,7 +19,7 @@ RSpec.shared_examples_for "a material lookup" do
 
     before { allow(object_class).to receive(:material_class).and_return(example_class) }
 
-    it { is_expected.to eq example_class }
+    it { is_expected.to be_an_instance_of example_class }
   end
 
   context "without explicit declaration" do
@@ -28,6 +28,6 @@ RSpec.shared_examples_for "a material lookup" do
 
     before { stub_const(root_name, object_class) }
 
-    it { is_expected.to eq example_class }
+    it { is_expected.to be_an_instance_of example_class }
   end
 end
