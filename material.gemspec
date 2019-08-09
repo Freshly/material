@@ -14,6 +14,9 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/Freshly/material"
   spec.license       = "MIT"
 
+  spec.files         = Dir["README.md", "LICENSE.txt", "lib/**/{*,.[a-z]*}"]
+  spec.require_paths = "lib"
+
   spec.add_runtime_dependency "activesupport", "~> 5.2.1"
   spec.add_runtime_dependency "spicerack", ">= 0.15.1", "< 1.0"
 
