@@ -5,12 +5,11 @@ module Material
   module For
     extend ActiveSupport::Concern
 
+    LOOKUP_NAME = :material_class
+
     class_methods do
       def material_class_for(object, subtype)
-        material_class = object.material_class if object.respond_to?(:material_class)
-        material_class ||= object.class.material_class if object.class.respond_to?(:material_class)
-        material_class ||= "#{object.class.name}#{subtype}".safe_constantize
-        material_class
+        object.try(LOOKUP_NAME) || object.class.try(LOOKUP_NAME) || "#{object.class.name}#{subtype}".safe_constantize
       end
     end
   end
