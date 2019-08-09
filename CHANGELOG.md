@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.2
+
+*Release Date*: 08/09/2019
+
+- `Material::Page` concern
+
 ## 0.2.1
 
 *Release Date*: 08/08/2019
