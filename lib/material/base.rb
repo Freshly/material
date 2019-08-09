@@ -10,7 +10,10 @@ module Material
     include Material::For
 
     def self.for(object)
-      material_class_for(object, "Material")
+      material_class = material_class_for(object, "Material")
+      return unless material_class.present?
+
+      material_class.new(object)
     end
   end
 end

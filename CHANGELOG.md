@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.4
+
+*Release Date*: 08/09/2019
+
+- `Material::For` bugfix
+
 ## 0.2.3
 
 *Release Date*: 08/09/2019
