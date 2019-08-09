@@ -25,6 +25,12 @@ RSpec.describe UserMaterial, type: :material do
     it { is_expected.to eq "user title" }
   end
 
+  describe "#parameterized_title" do
+    subject { material.parameterized_title }
+
+    it { is_expected.to eq "user-title" }
+  end
+
   describe "#list_title" do
     subject { material.list_title }
 

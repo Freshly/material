@@ -8,4 +8,5 @@ RSpec.describe Material::List, type: :material do
   it { is_expected.to include_module Material::Components }
   it { is_expected.to include_module Material::Icon }
   it { is_expected.to include_module Material::Text }
+  it { is_expected.to include_module Material::Page }
 end
