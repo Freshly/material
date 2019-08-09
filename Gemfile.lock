@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    material (0.2.2)
+    material (0.2.3)
       activesupport (~> 5.2.1)
       spicerack (>= 0.15.1, < 1.0)
 
@@ -72,7 +72,7 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.1.0)
+    rails-html-sanitizer (1.2.0)
       loofah (~> 2.2, >= 2.2.2)
     railties (5.2.3)
       actionpack (= 5.2.3)
