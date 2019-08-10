@@ -37,6 +37,12 @@ RSpec.describe FooMaterial, type: :material do
     it { is_expected.to eq "Foo" }
   end
 
+  describe "#index_title" do
+    subject { material.index_title }
+
+    it { is_expected.to eq "Foos" }
+  end
+
   describe "#header_title" do
     subject { material.header_title }
 
@@ -53,5 +59,11 @@ RSpec.describe FooMaterial, type: :material do
     subject { material.breadcrumb_title }
 
     it { is_expected.to eq "Foo" }
+  end
+
+  describe "#breadcrumb_index_title" do
+    subject { material.breadcrumb_index_title }
+
+    it { is_expected.to eq "Foos" }
   end
 end

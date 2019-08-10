@@ -30,4 +30,52 @@ RSpec.describe TestList, type: :list do
 
     it { is_expected.to be_nil }
   end
+
+  describe "#title" do
+    subject { list.title }
+
+    it { is_expected.to eq "Test Lists" }
+  end
+
+  describe "#parameterized_title" do
+    subject { list.parameterized_title }
+
+    it { is_expected.to eq "test-lists" }
+  end
+
+  describe "#list_title" do
+    subject { list.list_title }
+
+    it { is_expected.to eq "Test Lists" }
+  end
+
+  describe "#index_title" do
+    subject { list.index_title }
+
+    it { is_expected.to eq "Test Lists" }
+  end
+
+  describe "#header_title" do
+    subject { list.header_title }
+
+    it { is_expected.to eq "Test Lists" }
+  end
+
+  describe "#reference_title" do
+    subject { list.reference_title }
+
+    it { is_expected.to eq "Test Lists" }
+  end
+
+  describe "#breadcrumb_title" do
+    subject { list.breadcrumb_title }
+
+    it { is_expected.to eq "Test Lists" }
+  end
+
+  describe "#breadcrumb_index_title" do
+    subject { list.breadcrumb_index_title }
+
+    it { is_expected.to eq "Test Lists" }
+  end
 end

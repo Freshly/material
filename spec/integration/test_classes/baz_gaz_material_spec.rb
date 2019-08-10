@@ -37,6 +37,12 @@ RSpec.describe BazGazMaterial, type: :material do
     it { is_expected.to eq "Baz Gaz" }
   end
 
+  describe "#index_title" do
+    subject { material.index_title }
+
+    it { is_expected.to eq "Baz Gazs" }
+  end
+
   describe "#header_title" do
     subject { material.header_title }
 
@@ -53,5 +59,11 @@ RSpec.describe BazGazMaterial, type: :material do
     subject { material.breadcrumb_title }
 
     it { is_expected.to eq "Baz Gaz" }
+  end
+
+  describe "#breadcrumb_index_title" do
+    subject { material.breadcrumb_index_title }
+
+    it { is_expected.to eq "Baz Gazs" }
   end
 end

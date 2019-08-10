@@ -49,6 +49,12 @@ RSpec.describe FooList, type: :list do
     it { is_expected.to eq "Foo" }
   end
 
+  describe "#index_title" do
+    subject { list.index_title }
+
+    it { is_expected.to eq "Foos" }
+  end
+
   describe "#header_title" do
     subject { list.header_title }
 
@@ -65,5 +71,11 @@ RSpec.describe FooList, type: :list do
     subject { list.breadcrumb_title }
 
     it { is_expected.to eq "Foo" }
+  end
+
+  describe "#breadcrumb_index_title" do
+    subject { list.breadcrumb_index_title }
+
+    it { is_expected.to eq "Foos" }
   end
 end

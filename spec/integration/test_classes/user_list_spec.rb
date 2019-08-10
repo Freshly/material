@@ -31,36 +31,48 @@ RSpec.describe UserList, type: :list do
   describe "#title" do
     subject { list.title }
 
-    it { is_expected.to eq "UserMaterials" }
+    it { is_expected.to eq "User Materials" }
+  end
+
+  describe "#index_title" do
+    subject { list.index_title }
+
+    it { is_expected.to eq "User Materials" }
   end
 
   describe "#parameterized_title" do
     subject { list.parameterized_title }
 
-    it { is_expected.to eq "user_materials" }
+    it { is_expected.to eq "user-materials" }
   end
 
   describe "#list_title" do
     subject { list.list_title }
 
-    it { is_expected.to eq "UserMaterials" }
+    it { is_expected.to eq "User Materials" }
   end
 
   describe "#header_title" do
     subject { list.header_title }
 
-    it { is_expected.to eq "UserMaterials" }
+    it { is_expected.to eq "User Materials" }
   end
 
   describe "#reference_title" do
     subject { list.reference_title }
 
-    it { is_expected.to eq "UserMaterials" }
+    it { is_expected.to eq "User Materials" }
   end
 
   describe "#breadcrumb_title" do
     subject { list.breadcrumb_title }
 
-    it { is_expected.to eq "UserMaterials" }
+    it { is_expected.to eq "User Materials" }
+  end
+
+  describe "#breadcrumb_index_title" do
+    subject { list.breadcrumb_index_title }
+
+    it { is_expected.to eq "User Materials" }
   end
 end

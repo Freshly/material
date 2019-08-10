@@ -13,6 +13,10 @@ module Material
         register_truncator(key) { title }
       end
 
+      def register_index_title_truncator(key)
+        register_truncator(key) { title.pluralize }
+      end
+
       def register_truncator(key, max_length = DEFAULT_TRUNCATE_LENGTH, &block)
         register_component(key, max_length: max_length, &block)
         define_truncation_formatter(key)
@@ -36,7 +40,7 @@ module Material
     end
 
     included do
-      register_truncator(:title) { default_title }
+      register_truncator(:title) { default_title.titleize }
 
       register_component(:parameterized_title) { title_value.underscore.parameterize }
 
@@ -44,6 +48,9 @@ module Material
       register_title_truncator :header_title
       register_title_truncator :reference_title
       register_title_truncator :breadcrumb_title
+
+      register_index_title_truncator :index_title
+      register_index_title_truncator :breadcrumb_index_title
 
       private
 

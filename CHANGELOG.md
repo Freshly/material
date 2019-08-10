@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.6
+
+*Release Date*: 08/10/2019
+
+- Added `index` titles to `Material::Text`
+
 ## 0.2.5
 
 *Release Date*: 08/10/2019
