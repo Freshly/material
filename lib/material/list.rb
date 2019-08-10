@@ -9,7 +9,7 @@ module Material
     include Material::Components
     include Material::Icon
     include Material::Text
-    include Material::Page
+    include Material::Site
     include Material::For
 
     def self.for(object)

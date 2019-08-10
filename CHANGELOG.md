@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.5
+
+*Release Date*: 08/10/2019
+
+- `Material::Page` to `Material::Site` refactor
+
 ## 0.2.4
 
 *Release Date*: 08/09/2019
