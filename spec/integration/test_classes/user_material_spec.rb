@@ -37,6 +37,12 @@ RSpec.describe UserMaterial, type: :material do
     it { is_expected.to eq "user list title" }
   end
 
+  describe "#index_title" do
+    subject { material.index_title }
+
+    it { is_expected.to eq "user index title" }
+  end
+
   describe "#header_title" do
     subject { material.header_title }
 
@@ -53,5 +59,11 @@ RSpec.describe UserMaterial, type: :material do
     subject { material.breadcrumb_title }
 
     it { is_expected.to eq "user breadcrumb title" }
+  end
+
+  describe "#breadcrumb_index_title" do
+    subject { material.breadcrumb_index_title }
+
+    it { is_expected.to eq "user breadcrumb index title" }
   end
 end

@@ -18,4 +18,52 @@ RSpec.describe TestMaterial, type: :material do
 
     it { is_expected.to be_nil }
   end
+
+  describe "#title" do
+    subject { material.title }
+
+    it { is_expected.to eq "Test Material" }
+  end
+
+  describe "#parameterized_title" do
+    subject { material.parameterized_title }
+
+    it { is_expected.to eq "test-material" }
+  end
+
+  describe "#list_title" do
+    subject { material.list_title }
+
+    it { is_expected.to eq "Test Material" }
+  end
+
+  describe "#index_title" do
+    subject { material.index_title }
+
+    it { is_expected.to eq "Test Materials" }
+  end
+
+  describe "#header_title" do
+    subject { material.header_title }
+
+    it { is_expected.to eq "Test Material" }
+  end
+
+  describe "#reference_title" do
+    subject { material.reference_title }
+
+    it { is_expected.to eq "Test Material" }
+  end
+
+  describe "#breadcrumb_title" do
+    subject { material.breadcrumb_title }
+
+    it { is_expected.to eq "Test Material" }
+  end
+
+  describe "#breadcrumb_index_title" do
+    subject { material.breadcrumb_index_title }
+
+    it { is_expected.to eq "Test Materials" }
+  end
 end
