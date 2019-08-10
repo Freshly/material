@@ -3,14 +3,17 @@
 RSpec.describe Material::Text, type: :concern do
   include_context "with an example material"
 
-  let(:default_truncate_length) { described_class::DEFAULT_TRUNCATE_LENGTH }
+  let(:default_length) { described_class::DEFAULT_TRUNCATE_LENGTH }
 
-  it { is_expected.to have_material_component(:title).with_options(max_length: default_truncate_length) }
+  it { is_expected.to have_material_component(:title).with_options(max_length: default_length) }
   it { is_expected.to have_material_component(:parameterized_title) }
-  it { is_expected.to have_material_component(:list_title).with_options(max_length: default_truncate_length) }
-  it { is_expected.to have_material_component(:header_title).with_options(max_length: default_truncate_length) }
-  it { is_expected.to have_material_component(:reference_title).with_options(max_length: default_truncate_length) }
-  it { is_expected.to have_material_component(:breadcrumb_title).with_options(max_length: default_truncate_length) }
+  it { is_expected.to have_material_component(:list_title).with_options(max_length: default_length) }
+  it { is_expected.to have_material_component(:header_title).with_options(max_length: default_length) }
+  it { is_expected.to have_material_component(:reference_title).with_options(max_length: default_length) }
+  it { is_expected.to have_material_component(:breadcrumb_title).with_options(max_length: default_length) }
+
+  it { is_expected.to have_material_component(:index_title).with_options(max_length: default_length) }
+  it { is_expected.to have_material_component(:breadcrumb_index_title).with_options(max_length: default_length) }
 
   shared_examples_for "truncated text" do |key|
     subject { example_material.public_send(key) }
@@ -55,6 +58,18 @@ RSpec.describe Material::Text, type: :concern do
     it_behaves_like "truncated text", key
   end
 
+  shared_examples_for "a truncated index title component" do |key|
+    subject { example_material.public_send(key) }
+
+    before do
+      example_material_class.define_title { "title_values" }
+    end
+
+    it { is_expected.to eq "title_values" }
+
+    it_behaves_like "truncated text", key
+  end
+
   describe ".title" do
     it_behaves_like "truncated text", :title
   end
@@ -73,6 +88,14 @@ RSpec.describe Material::Text, type: :concern do
 
   describe ".breadcrumb_title" do
     it_behaves_like "a truncated title component", :breadcrumb_title
+  end
+
+  describe ".index_title" do
+    it_behaves_like "a truncated index title component", :index_title
+  end
+
+  describe ".breadcrumb_index_title" do
+    it_behaves_like "a truncated index title component", :breadcrumb_index_title
   end
 
   describe ".parameterized_title" do
