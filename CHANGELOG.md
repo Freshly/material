@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.7
+
+*Release Date*: 09/30/2019
+
+- Bugfix for `Material::For` and `List::For`
+
 ## 0.2.6
 
 *Release Date*: 08/10/2019

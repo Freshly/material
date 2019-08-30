@@ -1,23 +1,23 @@
 # frozen_string_literal: true
 
-RSpec.shared_examples_for "a material lookup" do
+RSpec.shared_examples_for "a material lookup" do |subtype|
   subject(:for) { base_class.for(object) }
 
-  context "with object#material_class" do
-    let(:object) { double(material_class: example_class) }
+  let(:subtype_class) { "#{subtype}_class".to_sym }
+
+  context "with object#subtype_class" do
+    let(:object) { double(subtype_class => example_class) }
 
     it { is_expected.to be_an_instance_of example_class }
   end
 
-  context "with object.material_class" do
+  context "with object.subtype_class" do
     let(:object) { object_class.new }
     let(:object_class) do
-      Class.new do
-        def self.material_class; end
-      end
+      Class.new.tap { |klass| klass.define_singleton_method(subtype_class) {} }
     end
 
-    before { allow(object_class).to receive(:material_class).and_return(example_class) }
+    before { allow(object_class).to receive(subtype_class).and_return(example_class) }
 
     it { is_expected.to be_an_instance_of example_class }
   end
