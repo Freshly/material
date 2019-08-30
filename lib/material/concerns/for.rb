@@ -14,7 +14,7 @@ module Material
 
       private
 
-      def to_material_class(object, lookup_name)
+      def lookup(object, lookup_name)
         object.public_send(lookup_name) if object.respond_to?(lookup_name)
       end
     end
