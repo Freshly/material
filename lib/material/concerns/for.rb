@@ -7,13 +7,15 @@ module Material
 
     class_methods do
       def material_class_for(object, subtype)
-        lookup_name = "#{subtype.downcase}_class".to_sym
-        return object.public_send(lookup_name) if object.respond_to?(lookup_name)
-
+        method = "#{subtype.downcase}_class".to_sym
         object_class = object.is_a?(Class) ? object : object.class
-        return object_class.public_send(lookup_name) if object_class.respond_to?(lookup_name)
+        lookup(object, method) || lookup(object_class, method) || "#{object_class.name}#{subtype}".safe_constantize
+      end
 
-        "#{object_class.name}#{subtype}".safe_constantize
+      private
+
+      def to_material_class(object, lookup_name)
+        object.public_send(lookup_name) if object.respond_to?(lookup_name)
       end
     end
   end
