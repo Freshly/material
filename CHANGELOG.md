@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.8
+
+*Release Date*: 09/30/2019
+
+- Use case fix for `List::For`
+
 ## 0.2.7
 
 *Release Date*: 09/30/2019
