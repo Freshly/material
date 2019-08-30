@@ -11,9 +11,7 @@ module Material
 
     def self.for(object)
       material_class = material_class_for(object, "Material")
-      return unless material_class.present?
-
-      material_class.new(object)
+      material_class.new(object) if material_class.present?
     end
   end
 end
