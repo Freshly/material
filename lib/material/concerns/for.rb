@@ -5,11 +5,17 @@ module Material
   module For
     extend ActiveSupport::Concern
 
-    LOOKUP_NAME = :material_class
-
     class_methods do
       def material_class_for(object, subtype)
-        object.try(LOOKUP_NAME) || object.class.try(LOOKUP_NAME) || "#{object.class.name}#{subtype}".safe_constantize
+        method = "#{subtype.downcase}_class".to_sym
+        object_class = object.is_a?(Class) ? object : object.class
+        lookup(object, method) || lookup(object_class, method) || "#{object_class.name}#{subtype}".safe_constantize
+      end
+
+      private
+
+      def lookup(object, lookup_name)
+        object.public_send(lookup_name) if object.respond_to?(lookup_name)
       end
     end
   end
