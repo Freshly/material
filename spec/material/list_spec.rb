@@ -14,7 +14,7 @@ RSpec.describe Material::List, type: :material do
   describe ".for" do
     include_context "with an example list"
 
-    it_behaves_like "a material lookup" do
+    it_behaves_like "a material lookup", :list do
       let(:base_class) { described_class }
       let(:example_class) { example_list_class }
     end
