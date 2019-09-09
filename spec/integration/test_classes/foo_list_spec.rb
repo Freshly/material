@@ -3,9 +3,15 @@
 RSpec.describe FooList, type: :list do
   subject(:list) { described_class.new(item) }
 
-  let(:item) { double }
+  let(:item) { described_class.item_class.new }
 
   it { is_expected.to inherit_from TestList }
+
+  describe ".item_class" do
+    subject { described_class.item_class }
+
+    it { is_expected.to eq SomeOther }
+  end
 
   describe "#count" do
     subject { list.count }
