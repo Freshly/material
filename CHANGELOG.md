@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.2.11
+
+*Release Date*: 09/09/2019
+
+- Improved `Material::List`
+  - Auto-lookup
+  - Always enforce type equality
+
 ## 0.2.10
 
 *Release Date*: 09/09/2019
