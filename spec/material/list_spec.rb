@@ -21,4 +21,20 @@ RSpec.describe Material::List, type: :material do
       let(:example_class) { example_list_class }
     end
   end
+
+  describe ".item_class" do
+    subject { described_class.item_class }
+
+    it { is_expected.to be_nil }
+  end
+
+  describe ".ensure_item_validity_with" do
+    subject { described_class.ensure_item_validity_with }
+
+    let(:item_class) { double }
+
+    before { allow(described_class).to receive(:item_class).and_return(item_class) }
+
+    it { is_expected.to eq item_class }
+  end
 end
