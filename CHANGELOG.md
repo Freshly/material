@@ -1,14 +1,20 @@
 # Changelog
 
+## 0.2.9
+
+*Release Date*: 09/09/2019
+
+- Added `List::Pagination`
+
 ## 0.2.8
 
-*Release Date*: 09/30/2019
+*Release Date*: 08/30/2019
 
 - Use case fix for `List::For`
 
 ## 0.2.7
 
-*Release Date*: 09/30/2019
+*Release Date*: 08/30/2019
 
 - Bugfix for `Material::For` and `List::For`
 
