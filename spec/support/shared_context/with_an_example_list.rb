@@ -5,7 +5,7 @@ RSpec.shared_context "with an example list" do
 
   let(:example_list_class) { Class.new(Material::List) }
 
-  let(:items) { [] }
+  let(:source) { [] }
 
   let(:root_name) { Faker::Internet.domain_word.capitalize }
   let(:example_material_name) { "#{root_name}List" }

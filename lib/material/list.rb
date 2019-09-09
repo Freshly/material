@@ -11,6 +11,7 @@ module Material
     include Material::Text
     include Material::Site
     include Material::For
+    include Material::Pagination
 
     def self.for(object)
       material_class = material_class_for(object, "List")
