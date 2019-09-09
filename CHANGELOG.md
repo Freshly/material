@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.10
+
+*Release Date*: 09/09/2019
+
+- Added `List::Mount` for `Facet` support
+
 ## 0.2.9
 
 *Release Date*: 09/09/2019

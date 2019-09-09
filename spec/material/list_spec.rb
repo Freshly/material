@@ -11,6 +11,7 @@ RSpec.describe Material::List, type: :material do
   it { is_expected.to include_module Material::Site }
   it { is_expected.to include_module Material::For }
   it { is_expected.to include_module Material::Pagination }
+  it { is_expected.to include_module Material::Mount }
 
   describe ".for" do
     include_context "with an example list"
