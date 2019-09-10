@@ -13,26 +13,12 @@ module Material
     include Material::For
     include Material::Pagination
     include Material::Mount
+    include Material::Collection
 
     class << self
       def for(object)
         material_class = material_class_for(object, "List")
         material_class.new if material_class.present?
-      end
-
-      def item_class
-        return item_enforcement if item_enforcement.is_a?(Class)
-
-        item_class = superclass.__send__(:item_enforcement) if superclass.respond_to?(:item_enforcement, true)
-        return item_class if item_class.present?
-
-        # Prevents against the case of `Material::List` becoming `Material` and returning a module
-        item_class = name.chomp("List").safe_constantize
-        item_class if item_class.is_a?(Class)
-      end
-
-      def ensure_item_validity_with
-        super || item_class
       end
     end
 

@@ -13,5 +13,13 @@ module Material
       material_class = material_class_for(object, "Material")
       material_class.new(object) if material_class.present?
     end
+
+    def to_source_model
+      source.to_model
+    end
+
+    def to_model
+      self
+    end
   end
 end
