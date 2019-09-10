@@ -20,4 +20,24 @@ RSpec.describe Material::Base, type: :material do
       let(:example_class) { example_material_class }
     end
   end
+
+  describe "#to_source_model" do
+    include_context "with an example material"
+
+    subject { example_material.to_source_model }
+
+    let(:source_model) { double }
+
+    before { allow(source).to receive(:to_model).and_return(source_model) }
+
+    it { is_expected.to eq source_model }
+  end
+
+  describe "#to_model" do
+    include_context "with an example material"
+
+    subject { example_material.to_model }
+
+    it { is_expected.to eq example_material }
+  end
 end
