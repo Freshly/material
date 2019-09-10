@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.12
+
+*Release Date*: 09/10/2019
+
+- Paper over `Material::Base#to_model` so it works better with view rendering 
+- Override `Material::List#to_ary` to emit a material-wrapped collection
+
 ## 0.2.11
 
 *Release Date*: 09/09/2019
