@@ -4,6 +4,10 @@ RSpec.describe Material::Core, type: :concern do
   include_context "with an example material"
 
   it { is_expected.to delegate_method(:name).to(:class).with_prefix(true) }
+  it { is_expected.to delegate_method(:class).to(:source).with_prefix(true) }
+  it { is_expected.to delegate_method(:attribute_names).to(:source_class) }
+  it { is_expected.to delegate_method(:human_attribute_name).to(:source_class) }
+  it { is_expected.to delegate_method(:type_for_attribute).to(:source_class) }
 
   describe "#initialize" do
     context "without a source" do
