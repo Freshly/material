@@ -4,7 +4,7 @@ module Material
   class Base < Spicerack::AttributeObject
     include Material::Components
     include Material::Core
-    include Material::Icon
+    include Material::Display
     include Material::Text
     include Material::Site
     include Material::For
