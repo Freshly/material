@@ -16,6 +16,7 @@ require_relative "material/concerns/pagination"
 require_relative "material/concerns/mount"
 require_relative "material/concerns/collection"
 require_relative "material/concerns/format"
+require_relative "material/concerns/attributes"
 
 require "material/version"
 
