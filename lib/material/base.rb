@@ -4,10 +4,13 @@ module Material
   class Base < Spicerack::AttributeObject
     include Material::Components
     include Material::Core
-    include Material::Icon
+    include Material::Display
     include Material::Text
     include Material::Site
     include Material::For
+    include Material::Format
+
+    register_component :list_item_style
 
     def self.for(object)
       material_class = material_class_for(object, "Material")

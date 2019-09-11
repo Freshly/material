@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.13
+
+*Release Date*: 09/11/2019
+
+- Add `Material::Format` for consistent formatting (starting with date/time)
+- Refactor `Material::Icon` into `Material::Display`, adding badge and label
+
 ## 0.2.12
 
 *Release Date*: 09/10/2019
