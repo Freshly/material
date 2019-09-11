@@ -7,7 +7,7 @@ require_relative "concerns/text"
 module Material
   class List < Collectible::CollectionBase
     include Material::Components
-    include Material::Icon
+    include Material::Display
     include Material::Text
     include Material::Site
     include Material::For
