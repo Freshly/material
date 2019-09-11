@@ -5,6 +5,8 @@ RSpec.describe Material::Base, type: :material do
 
   it { is_expected.to inherit_from Spicerack::AttributeObject }
 
+  it { is_expected.to extend_module ActiveSupport::NumberHelper }
+
   it { is_expected.to include_module Material::Components }
   it { is_expected.to include_module Material::Core }
   it { is_expected.to include_module Material::Display }
@@ -12,6 +14,7 @@ RSpec.describe Material::Base, type: :material do
   it { is_expected.to include_module Material::Site }
   it { is_expected.to include_module Material::For }
   it { is_expected.to include_module Material::Format }
+  it { is_expected.to include_module Material::Attributes }
 
   it { is_expected.to have_material_component :list_item_style }
 
