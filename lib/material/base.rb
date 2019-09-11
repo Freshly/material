@@ -2,6 +2,8 @@
 
 module Material
   class Base < Spicerack::AttributeObject
+    extend ActiveSupport::NumberHelper
+
     include Material::Components
     include Material::Core
     include Material::Display
