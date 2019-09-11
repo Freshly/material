@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "active_support"
+require "active_support/core_ext"
 
 require "spicerack"
 
@@ -13,6 +14,7 @@ require_relative "material/concerns/for"
 require_relative "material/concerns/pagination"
 require_relative "material/concerns/mount"
 require_relative "material/concerns/collection"
+require_relative "material/concerns/format"
 
 require "material/version"
 

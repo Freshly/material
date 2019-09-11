@@ -8,6 +8,9 @@ module Material
     include Material::Text
     include Material::Site
     include Material::For
+    include Material::Format
+
+    register_component :list_item_style
 
     def self.for(object)
       material_class = material_class_for(object, "Material")

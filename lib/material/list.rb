@@ -10,6 +10,7 @@ module Material
     include Material::Pagination
     include Material::Mount
     include Material::Collection
+    include Material::Format
 
     class << self
       def for(object)
