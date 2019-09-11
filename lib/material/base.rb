@@ -11,6 +11,7 @@ module Material
     include Material::Site
     include Material::For
     include Material::Format
+    include Material::Attributes
 
     register_component :list_item_style
 
