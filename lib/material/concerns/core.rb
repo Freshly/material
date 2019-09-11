@@ -10,6 +10,7 @@ module Material
 
       delegate :name, to: :class, prefix: true
       delegate :class, to: :source, prefix: true
+      delegate :to_param, to: :source
       delegate :attribute_names, :human_attribute_name, :type_for_attribute, to: :source_class
 
       delegate_missing_to :source
