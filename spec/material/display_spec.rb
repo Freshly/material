@@ -11,6 +11,4 @@ RSpec.describe Material::Display, type: :concern do
 
   it { is_expected.to have_material_component :label }
   it { is_expected.to have_material_component :label_style }
-
-  it { is_expected.to have_material_component :list_item_style }
 end

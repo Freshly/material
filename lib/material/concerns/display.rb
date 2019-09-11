@@ -13,8 +13,6 @@ module Material
 
       register_component :label
       register_component :label_style
-
-      register_component :list_item_style
     end
   end
 end
