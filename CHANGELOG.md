@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.15
+
+*Release Date*: 09/11/2019
+
+- Explicitly delegate `#to_param`
+
 ## 0.2.14
 
 *Release Date*: 09/11/2019
