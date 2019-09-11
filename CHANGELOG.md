@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.14
+
+*Release Date*: 09/11/2019
+
+- Add `Material::Attributes` for decomposing data cleanly
+- Cleaned up and extended `Material::Format` with numbers and generic entry
+
 ## 0.2.13
 
 *Release Date*: 09/11/2019
