@@ -5,6 +5,8 @@ RSpec.describe Material::Format, type: :concern do
 
   it { is_expected.to delegate_method(:format_date).to(:class) }
   it { is_expected.to delegate_method(:format_time).to(:class) }
+  it { is_expected.to delegate_method(:format_number).to(:class) }
+  it { is_expected.to delegate_method(:format_by_type).to(:class) }
 
   describe ".format_date" do
     subject { example_material_class.format_date(date) }
@@ -30,8 +32,8 @@ RSpec.describe Material::Format, type: :concern do
     it { is_expected.to eq "123,456.789" }
   end
 
-  describe "#format" do
-    subject { example_material_class.format(value, type: type) }
+  describe "#format_by_type" do
+    subject { example_material_class.format_by_type(value, type: type) }
 
     context "when :date" do
       let(:type) { :date }

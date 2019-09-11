@@ -6,7 +6,7 @@ module Material
     extend ActiveSupport::Concern
 
     included do
-      delegate :format_date, :format_time, :format_number, to: :class
+      delegate :format_date, :format_time, :format_number, :format_by_type, to: :class
     end
 
     class_methods do
@@ -22,7 +22,7 @@ module Material
         number_to_delimited(number)
       end
 
-      def format(value, type:)
+      def format_by_type(value, type:)
         case type.to_sym
         when :date
           format_date(value)

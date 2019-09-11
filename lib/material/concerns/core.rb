@@ -9,6 +9,8 @@ module Material
       attr_reader :source
 
       delegate :name, to: :class, prefix: true
+      delegate :class, to: :source, prefix: true
+      delegate :attribute_names, :human_attribute_name, :type_for_attribute, to: :source_class
 
       delegate_missing_to :source
     end
