@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    material (0.2.15)
+    material (0.2.16)
       activesupport (~> 5.2.1)
       spicerack (>= 0.16.2, < 1.0)
 

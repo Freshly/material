@@ -75,8 +75,10 @@ RSpec.describe Material::Attributes, type: :concern do
 
     let(:attribute0) { Faker::Internet.domain_word }
     let(:type0) { SecureRandom.hex }
+    let(:model_type0) { double(type: type0) }
     let(:attribute1) { "#{attribute0}foo" }
     let(:type1) { SecureRandom.hex }
+    let(:model_type1) { double(type: type1) }
 
     let(:expected_hash) do
       { attribute0 => type0, attribute1 => type1 }
@@ -84,8 +86,8 @@ RSpec.describe Material::Attributes, type: :concern do
 
     before do
       allow(example_material).to receive(:attribute_names).and_return(attribute_names)
-      allow(example_material).to receive(:type_for_attribute).with(attribute0).and_return(type0)
-      allow(example_material).to receive(:type_for_attribute).with(attribute1).and_return(type1)
+      allow(example_material).to receive(:type_for_attribute).with(attribute0).and_return(model_type0)
+      allow(example_material).to receive(:type_for_attribute).with(attribute1).and_return(model_type1)
     end
 
     it { is_expected.to eq expected_hash }

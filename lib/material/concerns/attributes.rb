@@ -33,7 +33,7 @@ module Material
     end
 
     def attribute_types
-      attribute_names.each_with_object({}) { |attribute, hash| hash[attribute] = type_for_attribute(attribute) }
+      attribute_names.each_with_object({}) { |attribute, hash| hash[attribute] = type_for_attribute(attribute).type }
     end
 
     def formatted_attributes
