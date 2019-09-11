@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.16
+
+*Release Date*: 09/11/2019
+
+- Type bugfix
+
 ## 0.2.15
 
 *Release Date*: 09/11/2019
