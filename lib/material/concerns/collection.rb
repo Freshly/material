@@ -4,6 +4,11 @@ module Material
   module Collection
     extend ActiveSupport::Concern
 
+    included do
+      delegate :item_class, to: :class
+      delegate :model_name, to: :item_class
+    end
+
     class_methods do
       def item_class
         return item_enforcement if item_enforcement.is_a?(Class)
