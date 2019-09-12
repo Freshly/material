@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.18
+
+*Release Date*: 09/12/2019
+
+- Added `title` as a default to `default_title` in `Material::Text`
+
 ## 0.2.17
 
 *Release Date*: 09/12/2019
