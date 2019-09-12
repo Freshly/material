@@ -117,8 +117,15 @@ RSpec.describe Material::Text, type: :concern do
     let(:source_model_name) { nil }
 
     before do
+      allow(source).to receive(:title).and_return(source_title)
       allow(source).to receive(:name).and_return(source_name)
       allow(source.class).to receive(:model_name).and_return(source_model_name)
+    end
+
+    context "when the source has a title" do
+      let(:source_title) { SecureRandom.hex }
+
+      it { is_expected.to eq source_title }
     end
 
     context "when the source has a name" do
