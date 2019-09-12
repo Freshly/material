@@ -3,6 +3,9 @@
 RSpec.describe Material::Collection, type: :concern do
   include_context "with an example list"
 
+  it { is_expected.to delegate_method(:item_class).to(:class) }
+  it { is_expected.to delegate_method(:model_name).to(:item_class) }
+
   # TODO: Improve this spec...
   describe ".item_class" do
     subject { example_list_class.item_class }
