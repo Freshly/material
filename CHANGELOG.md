@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.17
+
+*Release Date*: 09/12/2019
+
+- Delegate `model_name` properly for `Material::List`
+
 ## 0.2.16
 
 *Release Date*: 09/11/2019
