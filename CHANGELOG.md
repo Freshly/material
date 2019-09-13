@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.19
+
+*Release Date*: 09/13/2019
+
+- Exposed the route keys used internally by `Material::Site`
+
 ## 0.2.18
 
 *Release Date*: 09/12/2019
