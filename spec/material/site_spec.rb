@@ -44,6 +44,20 @@ RSpec.describe Material::Site, type: :concern do
     end
   end
 
+  describe "#singular_route_key" do
+    subject { example_material.singular_route_key }
+
+    context "when not a model" do
+      it { is_expected.to be_nil }
+    end
+
+    context "with a model" do
+      include_context "with an example model"
+
+      it { is_expected.to eq source.model_name.singular_route_key }
+    end
+  end
+
   describe "#path" do
     subject { example_material.path }
 
@@ -72,6 +86,20 @@ RSpec.describe Material::Site, type: :concern do
     end
   end
 
+  describe "#route_key" do
+    subject { example_material.route_key }
+
+    context "when not a model" do
+      it { is_expected.to be_nil }
+    end
+
+    context "with a model" do
+      include_context "with an example model"
+
+      it { is_expected.to eq source.model_name.route_key }
+    end
+  end
+
   describe "#index_path" do
     subject { example_material.index_path }
 
@@ -83,6 +111,20 @@ RSpec.describe Material::Site, type: :concern do
       include_context "with an example model"
 
       it { is_expected.to eq "#{source.model_name.route_key}_path".to_sym }
+    end
+  end
+
+  describe "#index_path?" do
+    subject { example_material.index_path? }
+
+    context "without rails" do
+      it { is_expected.to eq false }
+    end
+
+    context "with rails" do
+      it_behaves_like "a rails path predicate" do
+        let(:expected_path) { "#{source.model_name.route_key}_path".to_sym }
+      end
     end
   end
 end
