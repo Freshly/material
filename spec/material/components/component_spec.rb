@@ -64,7 +64,7 @@ RSpec.describe Material::Components::Component, type: :subclass do
   end
 
   describe "#value_for" do
-    subject { instance.value_for(object) }
+    subject(:value_for) { instance.value_for(object) }
 
     let(:duplicate) { double }
     let(:object) { double(dup: duplicate) }
@@ -92,6 +92,22 @@ RSpec.describe Material::Components::Component, type: :subclass do
         end
 
         it { is_expected.to eq duplicate }
+      end
+
+      context "when a class" do
+        let(:block) do
+          proc { a_class }
+        end
+
+        let(:object) { double(a_class: a_class) }
+        let(:a_class) { Class.new }
+
+        before { allow(a_class).to receive(:dup) }
+
+        it "is itself and not duped" do
+          expect(value_for).to eq a_class
+          expect(a_class).not_to have_received(:dup)
+        end
       end
     end
   end

@@ -5,7 +5,7 @@ module Material
     extend ActiveSupport::Concern
 
     included do
-      register_component :parent
+      register_component(:parent) { default_parent }
       register_component :filter
       register_component :filter_default
       register_path_component(:path, :singular_route_key)
@@ -26,6 +26,10 @@ module Material
           Rails.application.routes.url_helpers.respond_to?(public_send("#{key}_value".to_sym))
         end
       end
+    end
+
+    def default_parent
+      nil
     end
   end
 end
