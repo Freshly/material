@@ -61,7 +61,8 @@ module Material
       end
 
       def value_for(object)
-        object.instance_eval(&@value).dup if @value.respond_to?(:call)
+        value = object.instance_eval(&@value) if @value.respond_to?(:call)
+        value.is_a?(Class) ? value : value.dup if value.present?
       end
 
       def configure(**opts, &block)

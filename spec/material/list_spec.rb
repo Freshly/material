@@ -23,4 +23,34 @@ RSpec.describe Material::List, type: :material do
       let(:example_class) { example_list_class }
     end
   end
+
+  describe "#default_parent" do
+    include_context "with an example list"
+
+    subject { example_list.default_parent }
+
+    context "without a context_parent" do
+      it { is_expected.to be_nil }
+    end
+
+    context "with a context_parent" do
+      before { example_list.instance_variable_set(:@context_parent, context_parent) }
+
+      let(:context_parent) { double }
+
+      it { is_expected.to eq context_parent }
+    end
+  end
+
+  describe "#contextualize" do
+    include_context "with an example list"
+
+    subject(:contextualize) { example_list.contextualize(context) }
+
+    let(:context) { double }
+
+    it "sets the ivar" do
+      expect { contextualize }.to change { example_list.instance_variable_get(:@context_parent) }.from(nil).to(context)
+    end
+  end
 end

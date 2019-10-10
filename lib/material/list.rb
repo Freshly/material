@@ -19,6 +19,14 @@ module Material
       end
     end
 
+    def contextualize(parent)
+      @context_parent = parent
+    end
+
+    def default_parent
+      @context_parent
+    end
+
     def default_title
       (item_class.try(:model_name)&.human || item_class&.name).pluralize || self.class.name
     end
