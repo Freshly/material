@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.2.20
+
+*Release Date*: 10/10/2019
+
+- Allow `Material::List` to be contextualized with a parent
+- Prevent `.dup` on classes
+
 ## 0.2.19
 
 *Release Date*: 09/13/2019

@@ -44,6 +44,22 @@ RSpec.describe Material::Site, type: :concern do
     end
   end
 
+  describe "#parent" do
+    subject { example_material.parent }
+
+    let(:default_parent) { SecureRandom.hex }
+
+    before { allow(example_material).to receive(:default_parent).and_return(default_parent) }
+
+    it { is_expected.to eq default_parent }
+  end
+
+  describe "#default_parent" do
+    subject { example_material.default_parent }
+
+    it { is_expected.to be_nil }
+  end
+
   describe "#singular_route_key" do
     subject { example_material.singular_route_key }
 

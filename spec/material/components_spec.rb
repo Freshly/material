@@ -4,7 +4,7 @@ RSpec.describe Material::Components, type: :module do
   include_context "with an example material"
 
   describe ".register_component" do
-    let(:component_name) { Faker::Lorem.word.to_sym }
+    let(:component_name) { Faker::Internet.domain_word.to_sym }
 
     let(:instance) { instance_double(described_class::Component) }
     let(:expected_components) { Hash[component_name, instance] }
