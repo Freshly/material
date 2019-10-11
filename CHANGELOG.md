@@ -4,6 +4,7 @@
 
 *Release Date*: 10/11/2019
 
+- Materialize the value of parent
 - Make `.dup` behavior in components smarter
 
 ## 0.2.20

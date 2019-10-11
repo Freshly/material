@@ -47,11 +47,21 @@ RSpec.describe Material::Site, type: :concern do
   describe "#parent" do
     subject { example_material.parent }
 
-    let(:default_parent) { SecureRandom.hex }
+    context "when nil" do
+      it { is_expected.to be_nil }
+    end
 
-    before { allow(example_material).to receive(:default_parent).and_return(default_parent) }
+    context "when other" do
+      let(:default_parent) { double }
+      let(:materialized_parent) { double }
 
-    it { is_expected.to eq default_parent }
+      before do
+        allow(example_material).to receive(:default_parent).and_return(default_parent)
+        allow(Material::Base).to receive(:for).with(default_parent).and_return(materialized_parent)
+      end
+
+      it { is_expected.to eq materialized_parent }
+    end
   end
 
   describe "#default_parent" do
