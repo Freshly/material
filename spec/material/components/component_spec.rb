@@ -66,8 +66,7 @@ RSpec.describe Material::Components::Component, type: :subclass do
   describe "#value_for" do
     subject(:value_for) { instance.value_for(object) }
 
-    let(:duplicate) { double }
-    let(:object) { double(dup: duplicate) }
+    let(:object) { double }
 
     context "without a block" do
       let(:instance) { described_class.new }
@@ -78,36 +77,48 @@ RSpec.describe Material::Components::Component, type: :subclass do
     context "with a block" do
       let(:instance) { described_class.new(&block) }
 
-      context "without args" do
-        let(:block) do
-          proc { Struct.new(:dup).new(:duplicated_value) }
-        end
-
-        it { is_expected.to eq :duplicated_value }
+      let(:block) do
+        proc { some_value }
       end
 
-      context "with args" do
-        let(:block) do
-          proc { self }
-        end
+      let(:object) { double(some_value: some_value) }
 
-        it { is_expected.to eq duplicate }
+      shared_examples_for "a duplicate value is returned" do
+        it "is a duplicated" do
+          expect(value_for).to eq some_value
+          expect(value_for.object_id).not_to eq some_value.object_id
+        end
       end
 
-      context "when a class" do
-        let(:block) do
-          proc { a_class }
+      shared_examples_for "itself is returned" do
+        it "is a duplicated" do
+          expect(value_for).to eq some_value
+          expect(value_for.object_id).to eq some_value.object_id
         end
+      end
 
-        let(:object) { double(a_class: a_class) }
-        let(:a_class) { Class.new }
+      context "when array" do
+        let(:some_value) { %w[a b c] }
 
-        before { allow(a_class).to receive(:dup) }
+        it_behaves_like "a duplicate value is returned"
+      end
 
-        it "is itself and not duped" do
-          expect(value_for).to eq a_class
-          expect(a_class).not_to have_received(:dup)
-        end
+      context "when hash" do
+        let(:some_value) { Hash[:a, :b] }
+
+        it_behaves_like "a duplicate value is returned"
+      end
+
+      context "when class" do
+        let(:some_value) { Class.new }
+
+        it_behaves_like "itself is returned"
+      end
+
+      context "when other" do
+        let(:some_value) { double }
+
+        it_behaves_like "itself is returned"
       end
     end
   end

@@ -5,6 +5,8 @@ module Material
   module Components
     extend ActiveSupport::Concern
 
+    CLASSES_TO_DUPLICATE = [ Array, Hash ].freeze
+
     included do
       class_attribute :_components, instance_writer: false, default: {}
     end
@@ -62,7 +64,10 @@ module Material
 
       def value_for(object)
         value = object.instance_eval(&@value) if @value.respond_to?(:call)
-        value.is_a?(Class) ? value : value.dup if value.present?
+
+        return value.dup if CLASSES_TO_DUPLICATE.any? { |klass| value.is_a?(klass) }
+
+        value
       end
 
       def configure(**opts, &block)
