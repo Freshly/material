@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.21
+
+*Release Date*: 10/11/2019
+
+- Make `.dup` behavior in components smarter
+
 ## 0.2.20
 
 *Release Date*: 10/10/2019
