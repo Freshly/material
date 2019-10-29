@@ -6,7 +6,6 @@ module Material
     include Material::Display
     include Material::Text
     include Material::Site
-    include Material::For
     include Material::Pagination
     include Material::Mount
     include Material::Collection
@@ -14,8 +13,16 @@ module Material
 
     class << self
       def for(object)
-        material_class = material_class_for(object, "List")
+        material_class = class_for(object)
         material_class.new if material_class.present?
+      end
+
+      delegate :class_for, to: :class_finder
+
+      private
+
+      def class_finder
+        @_class_finder ||= Spicerack::ClassFinder.new("List")
       end
     end
 

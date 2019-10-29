@@ -12,7 +12,6 @@ RSpec.describe Material::Base, type: :material do
   it { is_expected.to include_module Material::Display }
   it { is_expected.to include_module Material::Text }
   it { is_expected.to include_module Material::Site }
-  it { is_expected.to include_module Material::For }
   it { is_expected.to include_module Material::Format }
   it { is_expected.to include_module Material::Attributes }
 

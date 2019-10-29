@@ -9,15 +9,24 @@ module Material
     include Material::Display
     include Material::Text
     include Material::Site
-    include Material::For
     include Material::Format
     include Material::Attributes
 
     register_component :list_item_style
 
-    def self.for(object)
-      material_class = material_class_for(object, "Material")
-      material_class.new(object) if material_class.present?
+    class << self
+      def for(object)
+        material_class = class_for(object)
+        material_class.new(object) if material_class.present?
+      end
+
+      delegate :class_for, to: :class_finder
+
+      private
+
+      def class_finder
+        @_class_finder ||= Spicerack::ClassFinder.new("Material")
+      end
     end
 
     def to_source_model
