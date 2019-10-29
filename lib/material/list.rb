@@ -12,12 +12,7 @@ module Material
     include Material::Format
 
     class << self
-      def for(object)
-        material_class = class_for(object)
-        material_class.new if material_class.present?
-      end
-
-      delegate :class_for, to: :class_finder
+      delegate :for, :class_for, to: :class_finder
 
       private
 

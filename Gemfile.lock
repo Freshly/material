@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/freshly/spicerack.git
-  revision: bd4633f6df4bad3fb8adf3a584d61d9a353566ba
+  revision: 2ffeb6e46adfc4b8abbe06436f7ba658e9a8b890
   ref: class_finder
   specs:
     around_the_world (0.17.3)
