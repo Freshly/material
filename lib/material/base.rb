@@ -20,7 +20,7 @@ module Material
 
     class << self
       def for(object)
-        object.conjugate!(self).new(object)
+        object.try(:conjugate!, self)&.new(object)
       end
     end
 
