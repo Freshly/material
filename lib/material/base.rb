@@ -4,6 +4,8 @@ module Material
   class Base < Spicerack::AttributeObject
     extend ActiveSupport::NumberHelper
 
+    include Spicerack::Junction
+
     include Material::Components
     include Material::Core
     include Material::Display
@@ -14,13 +16,11 @@ module Material
 
     register_component :list_item_style
 
+    suffixed_with "Material"
+
     class << self
-      delegate :for, :class_for, to: :class_finder
-
-      private
-
-      def class_finder
-        @_class_finder ||= Spicerack::ClassFinder.new("Material")
+      def for(object)
+        object.conjugate!(self).new(object)
       end
     end
 

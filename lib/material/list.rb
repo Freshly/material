@@ -2,6 +2,8 @@
 
 module Material
   class List < Collectible::CollectionBase
+    include Spicerack::Junction
+
     include Material::Components
     include Material::Display
     include Material::Text
@@ -11,13 +13,11 @@ module Material
     include Material::Collection
     include Material::Format
 
+    suffixed_with "List"
+
     class << self
-      delegate :for, :class_for, to: :class_finder
-
-      private
-
-      def class_finder
-        @_class_finder ||= Spicerack::ClassFinder.new("List")
+      def for(object)
+        object.conjugate!(self).new(object)
       end
     end
 
