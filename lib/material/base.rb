@@ -4,7 +4,8 @@ module Material
   class Base < Spicerack::AttributeObject
     extend ActiveSupport::NumberHelper
 
-    include Spicerack::Junction
+    include Conjunction::Junction
+    suffixed_with "Material"
 
     include Material::Components
     include Material::Core
@@ -15,8 +16,6 @@ module Material
     include Material::Attributes
 
     register_component :list_item_style
-
-    suffixed_with "Material"
 
     class << self
       def for(object)

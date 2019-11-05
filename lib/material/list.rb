@@ -2,7 +2,8 @@
 
 module Material
   class List < Collectible::CollectionBase
-    include Spicerack::Junction
+    include Conjunction::Junction
+    suffixed_with "List"
 
     include Material::Components
     include Material::Display
@@ -12,8 +13,6 @@ module Material
     include Material::Mount
     include Material::Collection
     include Material::Format
-
-    suffixed_with "List"
 
     class << self
       def for(object)

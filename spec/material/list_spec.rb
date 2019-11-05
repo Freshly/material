@@ -5,6 +5,8 @@ RSpec.describe Material::List, type: :material do
 
   it { is_expected.to inherit_from Collectible::CollectionBase }
 
+  it { is_expected.to include_module Conjunction::Junction }
+
   it { is_expected.to include_module Material::Components }
   it { is_expected.to include_module Material::Display }
   it { is_expected.to include_module Material::Text }

@@ -6,12 +6,12 @@ RSpec.shared_examples_for "a material lookup" do
   let(:object) { object_class.new }
   let(:object_class) do
     Class.new do
-      include Spicerack::Conjugatable
+      include Conjunction::Conjunctive
     end
   end
 
   context "with explicit override" do
-    before { object_class.__send__(:conjoin, example_class) }
+    before { object_class.__send__(:conjoins, example_class) }
 
     it { is_expected.to be_an_instance_of example_class }
   end
@@ -35,7 +35,7 @@ RSpec.shared_examples_for "a material lookup" do
       before { stub_const(other_name, object_class) }
 
       it "raises" do
-        expect { _for }.to raise_error NameError
+        expect { _for }.to raise_error Conjunction::DisjointedError, "#{other_name} disjointed with #{base_class.name}"
       end
     end
   end
