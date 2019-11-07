@@ -16,7 +16,10 @@ module Material
 
     class << self
       def for(object)
-        for_class(object.respond_to?(:first) ? object.first : object)&.new(object)
+        klass = for_class(object.respond_to?(:first) ? object.first : object)
+        return if klass.blank?
+
+        (object.present? && !object.is_a?(Class)) ? klass.new(object) : klass.new
       end
 
       def for_class(object)

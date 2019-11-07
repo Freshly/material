@@ -23,12 +23,22 @@ RSpec.describe Material::List, type: :material do
       let(:base_class) { described_class }
       let(:example_class) { example_list_class }
 
-      context "when an array" do
-        let(:object) { [ reference ] }
-        let(:for_class) { double }
+      context "when a class" do
+        let(:reference) { object_class }
+        let(:klass) { double }
         let(:example_instance) { double }
 
-        before { allow(for_class).to receive(:new).with(object).and_return(example_instance) }
+        before { allow(klass).to receive(:new).with(no_args).and_return(example_instance) }
+
+        it { is_expected.to eq example_instance }
+      end
+
+      context "when an array" do
+        let(:object) { [ reference ] }
+        let(:klass) { double }
+        let(:example_instance) { double }
+
+        before { allow(klass).to receive(:new).with(object).and_return(example_instance) }
 
         it { is_expected.to eq example_instance }
       end
