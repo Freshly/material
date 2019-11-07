@@ -1,42 +1,30 @@
 # frozen_string_literal: true
 
 RSpec.shared_examples_for "a material lookup" do
-  subject(:_for) { base_class.for(object) }
+  subject { base_class.for(object) }
 
-  let(:object) { object_class.new }
+  before { allow(base_class).to receive(:for_class).with(reference).and_return(for_class) }
+
+  let(:object) { reference }
+  let(:reference) { object_class.new }
   let(:object_class) do
     Class.new do
       include Conjunction::Conjunctive
     end
   end
 
-  context "with explicit override" do
-    before { object_class.__send__(:conjoins, example_class) }
-
-    it { is_expected.to be_an_instance_of example_class }
-  end
-
-  context "with invalid input" do
-    let(:object) { Faker::Lorem.word }
+  context "when nil" do
+    let(:for_class) { nil }
 
     it { is_expected.to be_nil }
   end
 
-  context "without explicit declaration" do
-    context "with match" do
-      before { stub_const(root_name, object_class) }
+  context "when present" do
+    let(:for_class) { double }
+    let(:example_instance) { double }
 
-      it { is_expected.to be_an_instance_of example_class }
-    end
+    before { allow(for_class).to receive(:new).with(object).and_return(example_instance) }
 
-    context "without matching" do
-      let(:other_name) { "#{root_name}x" }
-
-      before { stub_const(other_name, object_class) }
-
-      it "raises" do
-        expect { _for }.to raise_error Conjunction::DisjointedError, "#{other_name} disjointed with #{base_class.name}"
-      end
-    end
+    it { is_expected.to eq example_instance }
   end
 end

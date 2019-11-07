@@ -16,7 +16,11 @@ module Material
 
     class << self
       def for(object)
-        object.try(:conjugate!, self)&.new(object)
+        for_class(object.respond_to?(:first) ? object.first : object)&.new(object)
+      end
+
+      def for_class(object)
+        object.try(:conjugate!, self)
       end
     end
 

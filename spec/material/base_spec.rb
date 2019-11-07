@@ -28,6 +28,15 @@ RSpec.describe Material::Base, type: :material do
     end
   end
 
+  describe ".for_class" do
+    include_context "with an example material"
+
+    it_behaves_like "a material class lookup" do
+      let(:base_class) { described_class }
+      let(:example_class) { example_material_class }
+    end
+  end
+
   describe "#to_source_model" do
     include_context "with an example material"
 

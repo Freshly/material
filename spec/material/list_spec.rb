@@ -22,6 +22,25 @@ RSpec.describe Material::List, type: :material do
     it_behaves_like "a material lookup" do
       let(:base_class) { described_class }
       let(:example_class) { example_list_class }
+
+      context "when an array" do
+        let(:object) { [ reference ] }
+        let(:for_class) { double }
+        let(:example_instance) { double }
+
+        before { allow(for_class).to receive(:new).with(object).and_return(example_instance) }
+
+        it { is_expected.to eq example_instance }
+      end
+    end
+  end
+
+  describe ".for_class" do
+    include_context "with an example list"
+
+    it_behaves_like "a material class lookup" do
+      let(:base_class) { described_class }
+      let(:example_class) { example_list_class }
     end
   end
 
