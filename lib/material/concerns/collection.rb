@@ -30,7 +30,7 @@ module Material
       ary = super
       return ary if ary.empty?
 
-      material_class = self.class.material_class_for(ary.first, "Material")
+      material_class = ary.first.try(:conjugate, Material::Base)
       material_class.nil? ? ary : ary.map(&material_class.method(:new))
     end
   end

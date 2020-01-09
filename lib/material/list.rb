@@ -2,11 +2,13 @@
 
 module Material
   class List < Collectible::CollectionBase
+    include Conjunction::Junction
+    suffixed_with "List"
+
     include Material::Components
     include Material::Display
     include Material::Text
     include Material::Site
-    include Material::For
     include Material::Pagination
     include Material::Mount
     include Material::Collection
@@ -14,8 +16,20 @@ module Material
 
     class << self
       def for(object)
-        material_class = material_class_for(object, "List")
-        material_class.new if material_class.present?
+        klass = for_class(object.respond_to?(:first) ? object.first : object)
+        materialize(object, klass) if klass.present?
+      end
+
+      def for_class(object)
+        object.try(:conjugate!, self)
+      end
+
+      private
+
+      def materialize(object, klass)
+        return klass.new(object) if object.present? && !object.is_a?(Class)
+
+        klass.new
       end
     end
 
