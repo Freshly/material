@@ -5,11 +5,12 @@ RSpec.describe Material::List, type: :material do
 
   it { is_expected.to inherit_from Collectible::CollectionBase }
 
+  it { is_expected.to include_module Conjunction::Junction }
+
   it { is_expected.to include_module Material::Components }
   it { is_expected.to include_module Material::Display }
   it { is_expected.to include_module Material::Text }
   it { is_expected.to include_module Material::Site }
-  it { is_expected.to include_module Material::For }
   it { is_expected.to include_module Material::Pagination }
   it { is_expected.to include_module Material::Mount }
   it { is_expected.to include_module Material::Collection }
@@ -18,7 +19,36 @@ RSpec.describe Material::List, type: :material do
   describe ".for" do
     include_context "with an example list"
 
-    it_behaves_like "a material lookup", :list do
+    it_behaves_like "a material lookup" do
+      let(:base_class) { described_class }
+      let(:example_class) { example_list_class }
+
+      context "when a class" do
+        let(:reference) { object_class }
+        let(:klass) { double }
+        let(:example_instance) { double }
+
+        before { allow(klass).to receive(:new).with(no_args).and_return(example_instance) }
+
+        it { is_expected.to eq example_instance }
+      end
+
+      context "when an array" do
+        let(:object) { [ reference ] }
+        let(:klass) { double }
+        let(:example_instance) { double }
+
+        before { allow(klass).to receive(:new).with(object).and_return(example_instance) }
+
+        it { is_expected.to eq example_instance }
+      end
+    end
+  end
+
+  describe ".for_class" do
+    include_context "with an example list"
+
+    it_behaves_like "a material class lookup" do
       let(:base_class) { described_class }
       let(:example_class) { example_list_class }
     end

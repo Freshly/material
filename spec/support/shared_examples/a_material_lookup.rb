@@ -1,33 +1,30 @@
 # frozen_string_literal: true
 
-RSpec.shared_examples_for "a material lookup" do |subtype|
-  subject(:for) { base_class.for(object) }
+RSpec.shared_examples_for "a material lookup" do
+  subject { base_class.for(object) }
 
-  let(:subtype_class) { "#{subtype}_class".to_sym }
+  before { allow(base_class).to receive(:for_class).with(reference).and_return(klass) }
 
-  context "with object#subtype_class" do
-    let(:object) { double(subtype_class => example_class) }
-
-    it { is_expected.to be_an_instance_of example_class }
-  end
-
-  context "with object.subtype_class" do
-    let(:object) { object_class.new }
-    let(:object_class) do
-      Class.new.tap { |klass| klass.define_singleton_method(subtype_class) {} }
+  let(:object) { reference }
+  let(:reference) { object_class.new }
+  let(:object_class) do
+    Class.new do
+      include Conjunction::Conjunctive
     end
-
-    before { allow(object_class).to receive(subtype_class).and_return(example_class) }
-
-    it { is_expected.to be_an_instance_of example_class }
   end
 
-  context "without explicit declaration" do
-    let(:object) { object_class.new }
-    let(:object_class) { Class.new }
+  context "when nil" do
+    let(:klass) { nil }
 
-    before { stub_const(root_name, object_class) }
+    it { is_expected.to be_nil }
+  end
 
-    it { is_expected.to be_an_instance_of example_class }
+  context "when present" do
+    let(:klass) { double }
+    let(:example_instance) { double }
+
+    before { allow(klass).to receive(:new).with(object).and_return(example_instance) }
+
+    it { is_expected.to eq example_instance }
   end
 end

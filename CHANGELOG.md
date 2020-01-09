@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.22
+
+*Release Date*: 1/09/2020
+
+- Use `Conjunction` gem
+
 ## 0.2.21
 
 *Release Date*: 10/11/2019

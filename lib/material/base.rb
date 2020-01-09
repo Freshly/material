@@ -4,20 +4,27 @@ module Material
   class Base < Spicerack::AttributeObject
     extend ActiveSupport::NumberHelper
 
+    include Conjunction::Junction
+    suffixed_with "Material"
+
     include Material::Components
     include Material::Core
     include Material::Display
     include Material::Text
     include Material::Site
-    include Material::For
     include Material::Format
     include Material::Attributes
 
     register_component :list_item_style
 
-    def self.for(object)
-      material_class = material_class_for(object, "Material")
-      material_class.new(object) if material_class.present?
+    class << self
+      def for(object)
+        for_class(object)&.new(object)
+      end
+
+      def for_class(object)
+        object.try(:conjugate!, self)
+      end
     end
 
     def to_source_model

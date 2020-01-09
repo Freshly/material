@@ -7,12 +7,13 @@ RSpec.describe Material::Base, type: :material do
 
   it { is_expected.to extend_module ActiveSupport::NumberHelper }
 
+  it { is_expected.to include_module Conjunction::Junction }
+
   it { is_expected.to include_module Material::Components }
   it { is_expected.to include_module Material::Core }
   it { is_expected.to include_module Material::Display }
   it { is_expected.to include_module Material::Text }
   it { is_expected.to include_module Material::Site }
-  it { is_expected.to include_module Material::For }
   it { is_expected.to include_module Material::Format }
   it { is_expected.to include_module Material::Attributes }
 
@@ -21,7 +22,16 @@ RSpec.describe Material::Base, type: :material do
   describe ".for" do
     include_context "with an example material"
 
-    it_behaves_like "a material lookup", :material do
+    it_behaves_like "a material lookup" do
+      let(:base_class) { described_class }
+      let(:example_class) { example_material_class }
+    end
+  end
+
+  describe ".for_class" do
+    include_context "with an example material"
+
+    it_behaves_like "a material class lookup" do
       let(:base_class) { described_class }
       let(:example_class) { example_material_class }
     end

@@ -41,7 +41,7 @@ RSpec.describe Material::Collection, type: :concern do
     context "with material" do
       let(:material_class) { Class.new(Material::Base) }
 
-      before { allow(item0).to receive(:material_class).and_return(material_class) }
+      before { allow(item0).to receive(:conjugate).with(Material::Base).and_return(material_class) }
 
       it { is_expected.to all be_an_instance_of(material_class) }
     end
