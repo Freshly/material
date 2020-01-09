@@ -4,7 +4,7 @@ require "active_support"
 require "active_support/core_ext"
 require "active_support/number_helper"
 
-require "spicerack"
+require "spicery"
 
 require_relative "material/concerns/components"
 require_relative "material/concerns/core"

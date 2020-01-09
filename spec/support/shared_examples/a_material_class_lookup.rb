@@ -36,7 +36,7 @@ RSpec.shared_examples_for "a material class lookup" do
 
       it "raises" do
         expect { for_class }.
-          to raise_error Conjunction::DisjointedError, "#{other_name} disjointed with #{base_class.name}"
+          to raise_error Conjunction::DisjointedError, "#{other_name} #{base_class.name} unknown"
       end
     end
   end
