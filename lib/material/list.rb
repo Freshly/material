@@ -17,13 +17,19 @@ module Material
     class << self
       def for(object)
         klass = for_class(object.respond_to?(:first) ? object.first : object)
-        return if klass.blank?
-
-        (object.present? && !object.is_a?(Class)) ? klass.new(object) : klass.new
+        materialize(object, klass) if klass.present?
       end
 
       def for_class(object)
         object.try(:conjugate!, self)
+      end
+
+      private
+
+      def materialize(object, klass)
+        return klass.new(object) if object.present? && !object.is_a?(Class)
+
+        klass.new
       end
     end
 
