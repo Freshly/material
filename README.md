@@ -7,12 +7,11 @@ An extensible and lightweight object which defines how your objects are viewed.
 [![Maintainability](https://api.codeclimate.com/v1/badges/eca5499715d9a32c5616/maintainability)](https://codeclimate.com/github/Freshly/material/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/eca5499715d9a32c5616/test_coverage)](https://codeclimate.com/github/Freshly/material/test_coverage)
 
-* [Material](#material)
-  * [Installation](#installation)
-  * [Usage](#usage)
-  * [Development](#development)
-  * [Contributing](#contributing)
-  * [License](#license)
+* [Installation](#installation)
+* [Usage](#usage)
+* [Development](#development)
+* [Contributing](#contributing)
+* [License](#license)
 
 ## Installation
 
