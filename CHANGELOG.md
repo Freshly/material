@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.2
+
+*Release Date*: 2/7/2020
+
+- Fixed bug with list for plain ActiveRecord objects with no records
+
 ## 0.3.1
 
 *Release Date*: 2/7/2020
