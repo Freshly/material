@@ -55,7 +55,7 @@ module Material
       private
 
       def default_title
-        source.try(:title) || source.try(:name) || self.class.try(:model_name)&.human || self.class.name
+        source.try(:title) || source.try(:name) || try(:model_name)&.human || source.class.name
       end
     end
   end
