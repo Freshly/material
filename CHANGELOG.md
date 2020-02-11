@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.3
+
+*Release Date*: 2/11/2020
+
+- Enhancements to default text mapping
+
 ## 0.3.2
 
 *Release Date*: 2/7/2020
