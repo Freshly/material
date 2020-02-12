@@ -28,12 +28,16 @@ module Material
       formatted_attributes.fetch(attribute)
     end
 
+    def display_attributes
+      attribute_names
+    end
+
     def attribute_values
-      attribute_names.each_with_object({}) { |attribute, hash| hash[attribute] = public_send(attribute.to_sym) }
+      display_attributes.each_with_object({}) { |attribute, hash| hash[attribute] = public_send(attribute.to_sym) }
     end
 
     def attribute_types
-      attribute_names.each_with_object({}) { |attribute, hash| hash[attribute] = type_for_attribute(attribute).type }
+      display_attributes.each_with_object({}) { |attribute, hash| hash[attribute] = type_for_attribute(attribute).type }
     end
 
     def formatted_attributes
@@ -44,9 +48,9 @@ module Material
 
     def sorted_attribute_names
       [
-        (head_attributes & attribute_names),
-        (attribute_names - head_attributes - tail_attributes).sort,
-        (tail_attributes & attribute_names),
+        (head_attributes & display_attributes),
+        (display_attributes - head_attributes - tail_attributes).sort,
+        (tail_attributes & display_attributes),
       ].flatten
     end
 

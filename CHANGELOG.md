@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.4
+
+*Release Date*: 2/12/2020
+
+- Display attributes
+
 ## 0.3.3
 
 *Release Date*: 2/11/2020
