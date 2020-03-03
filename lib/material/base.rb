@@ -25,6 +25,8 @@ module Material
       def for_class(object)
         object.try(:conjugate!, self)
       end
+
+      delegate_missing_to :prototype
     end
 
     def to_source_model

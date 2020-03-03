@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.5
+
+*Release Date*: 3/3/2020
+
+- Delegates missing methods on the class to the prototype/item_class
+
 ## 0.3.4
 
 *Release Date*: 2/12/2020
