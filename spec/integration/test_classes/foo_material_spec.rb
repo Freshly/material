@@ -66,4 +66,28 @@ RSpec.describe FooMaterial, type: :material do
 
     it { is_expected.to eq "Foos" }
   end
+
+  describe ".delegate_missing_to" do
+    subject { described_class.some_method }
+
+    before { stub_const(described_class.prototype_name, example_class) }
+
+    let(:example_class) do
+      Class.new do
+        def self.some_method
+          :source_value
+        end
+      end
+    end
+
+    context "with a defined method" do
+      before { allow(described_class).to receive(:some_method).and_return(:some_value) }
+
+      it { is_expected.to eq :some_value }
+    end
+
+    context "without a defined method" do
+      it { is_expected.to eq :source_value }
+    end
+  end
 end
