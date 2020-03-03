@@ -84,4 +84,20 @@ RSpec.describe FooList, type: :list do
 
     it { is_expected.to eq "Foos" }
   end
+
+  describe ".delegate_missing_to" do
+    subject { described_class.some_method }
+
+    before { allow(described_class.item_class).to receive(:some_method).and_return(:source_value) }
+
+    context "with a defined method" do
+      before { allow(described_class).to receive(:some_method).and_return(:some_value) }
+
+      it { is_expected.to eq :some_value }
+    end
+
+    context "without a defined method" do
+      it { is_expected.to eq :source_value }
+    end
+  end
 end

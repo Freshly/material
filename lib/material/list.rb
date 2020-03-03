@@ -24,6 +24,8 @@ module Material
         object.try(:conjugate!, self)
       end
 
+      delegate_missing_to :item_class
+
       private
 
       def materialize(object, klass)
