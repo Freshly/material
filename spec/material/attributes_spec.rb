@@ -48,7 +48,7 @@ RSpec.describe Material::Attributes, type: :concern do
   describe "#attribute_values" do
     subject { example_material.attribute_values }
 
-    let(:attribute_names) { [ attribute0, attribute1 ] }
+    let(:display_attributes) { [ attribute0, attribute1 ] }
 
     let(:attribute0) { Faker::Internet.domain_word }
     let(:value0) { SecureRandom.hex }
@@ -60,7 +60,7 @@ RSpec.describe Material::Attributes, type: :concern do
     end
 
     before do
-      allow(example_material).to receive(:attribute_names).and_return(attribute_names)
+      allow(example_material).to receive(:display_attributes).and_return(display_attributes)
       allow(example_material).to receive(attribute0.to_sym).and_return(value0)
       allow(example_material).to receive(attribute1.to_sym).and_return(value1)
     end
@@ -71,7 +71,7 @@ RSpec.describe Material::Attributes, type: :concern do
   describe "#attribute_types" do
     subject { example_material.attribute_types }
 
-    let(:attribute_names) { [ attribute0, attribute1 ] }
+    let(:display_attributes) { [ attribute0, attribute1 ] }
 
     let(:attribute0) { Faker::Internet.domain_word }
     let(:type0) { SecureRandom.hex }
@@ -85,7 +85,7 @@ RSpec.describe Material::Attributes, type: :concern do
     end
 
     before do
-      allow(example_material).to receive(:attribute_names).and_return(attribute_names)
+      allow(example_material).to receive(:display_attributes).and_return(display_attributes)
       allow(example_material).to receive(:type_for_attribute).with(attribute0).and_return(model_type0)
       allow(example_material).to receive(:type_for_attribute).with(attribute1).and_return(model_type1)
     end
@@ -128,12 +128,22 @@ RSpec.describe Material::Attributes, type: :concern do
     it { is_expected.to eq expected_hash }
   end
 
-  describe "#sorted_attribute_names" do
-    subject { example_material.sorted_attribute_names }
+  describe "#display_attributes" do
+    subject { example_material.display_attributes }
 
     let(:attribute_names) { %w[dog cat id updated_at apple created_at banana] }
 
     before { allow(example_material).to receive(:attribute_names).and_return(attribute_names) }
+
+    it { is_expected.to eq attribute_names }
+  end
+
+  describe "#sorted_attribute_names" do
+    subject { example_material.sorted_attribute_names }
+
+    let(:display_attributes) { %w[dog cat id updated_at apple created_at banana] }
+
+    before { allow(example_material).to receive(:display_attributes).and_return(display_attributes) }
 
     it { is_expected.to eq %w[id apple banana cat dog created_at updated_at] }
   end

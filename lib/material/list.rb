@@ -16,7 +16,7 @@ module Material
 
     class << self
       def for(object)
-        klass = for_class(object.respond_to?(:first) ? object.first : object)
+        klass = for_class((object.respond_to?(:to_ary) && object.respond_to?(:first)) ? object.first : object)
         materialize(object, klass) if klass.present?
       end
 

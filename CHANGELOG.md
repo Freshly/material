@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.3.4
+
+*Release Date*: 2/12/2020
+
+- Display attributes
+
+## 0.3.3
+
+*Release Date*: 2/11/2020
+
+- Enhancements to default text mapping
+
+## 0.3.2
+
+*Release Date*: 2/7/2020
+
+- Fixed bug with list for plain ActiveRecord objects with no records
+
+## 0.3.1
+
+*Release Date*: 2/7/2020
+
+- Gem Updates
+
 ## 0.3.0
 
 *Release Date*: 1/13/2020

@@ -33,6 +33,18 @@ RSpec.describe Material::List, type: :material do
         it { is_expected.to eq example_instance }
       end
 
+      context "when responding to first but not an array" do
+        let(:reference) do
+          Class.new(object_class).define_singleton_method(:first) { nil }
+        end
+        let(:klass) { double }
+        let(:example_instance) { double }
+
+        before { allow(klass).to receive(:new).with(object).and_return(example_instance) }
+
+        it { is_expected.to eq example_instance }
+      end
+
       context "when an array" do
         let(:object) { [ reference ] }
         let(:klass) { double }
