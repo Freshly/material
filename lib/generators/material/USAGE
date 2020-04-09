@@ -1,0 +1,11 @@
+Description:
+    Stub a Material with a List.
+
+Example:
+    `rails generate material foo`
+
+    Generates:
+   Material: app/materials/foo_material.rb
+       List: app/lists/foo_list.rb
+       Test: spec/materials/foo_material_spec.rb
+       Test: spec/lists/foo_list_spec.rb
