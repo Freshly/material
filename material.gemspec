@@ -7,8 +7,8 @@ require "material/version"
 Gem::Specification.new do |spec|
   spec.name          = "material"
   spec.version       = Material::VERSION
-  spec.authors       = [ "Eric Garside" ]
-  spec.email         = %w[garside@gmail.com]
+  spec.authors       = [ "Eric Garside", "Brandon Trumpold" ]
+  spec.email         = %w[garside@gmail.com brandon.trumpold@gmail.com]
 
   spec.summary       = "Wrap your records with a presentation layer without cannibalizing view responsibility."
   spec.description   = "An extensible and lightweight object which defines how your objects are viewed."
