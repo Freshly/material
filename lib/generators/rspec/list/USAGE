@@ -1,0 +1,8 @@
+Description:
+    Stub a List test.
+
+Example:
+    `rails generate rspec:list foo`
+
+    Generates:
+      Test: spec/lists/foo_list_spec.rb

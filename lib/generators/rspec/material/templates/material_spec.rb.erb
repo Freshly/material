@@ -1,0 +1,9 @@
+# frozen_string_literal: true
+
+require "rails_helper"
+
+RSpec.describe <%= class_name %>Material, type: :material do
+  subject(:material) { described_class.new(**input) }
+
+  it { is_expected.to inherit_from ApplicationMaterial }
+end
