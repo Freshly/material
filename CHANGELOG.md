@@ -2,6 +2,12 @@
 
 ## 0.3.5
 
+*Release Date*: 4/10/2020
+
+- Added generators to create stubs for materials and lists
+
+## 0.3.5
+
 *Release Date*: 3/3/2020
 
 - Delegates missing methods on the class to the prototype/item_class
@@ -104,7 +110,7 @@
 
 *Release Date*: 09/10/2019
 
-- Paper over `Material::Base#to_model` so it works better with view rendering 
+- Paper over `Material::Base#to_model` so it works better with view rendering
 - Override `Material::List#to_ary` to emit a material-wrapped collection
 
 ## 0.2.11
