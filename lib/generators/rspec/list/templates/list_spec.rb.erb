@@ -1,0 +1,9 @@
+# frozen_string_literal: true
+
+require "rails_helper"
+
+RSpec.describe <%= class_name %>List, type: :list do
+  subject(:list) { described_class.new(**input) }
+
+  it { is_expected.to inherit_from ApplicationList }
+end

@@ -1,0 +1,8 @@
+Description:
+    Stub a Material test.
+
+Example:
+    `rails generate rspec:material foo`
+
+    Generates:
+      Test: spec/materials/foo_material_spec.rb

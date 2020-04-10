@@ -1,0 +1,9 @@
+Description:
+    Stub a List with test.
+
+Example:
+    `rails generate material:list foo`
+
+    Generates:
+      State: app/lists/foo_list.rb
+       Test: spec/lists/foo_state_list.rb
