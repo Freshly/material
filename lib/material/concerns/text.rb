@@ -39,9 +39,9 @@ module Material
         memoize method_name
       end
 
-      def default_truncation_length
-        DEFAULT_TRUNCATE_LENGTH
-      end
+      # def default_truncation_length
+      #   DEFAULT_TRUNCATE_LENGTH
+      # end
     end
 
     included do
