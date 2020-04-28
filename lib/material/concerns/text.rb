@@ -7,8 +7,6 @@ module Material
     DEFAULT_TRUNCATE_LENGTH = 50
 
     class_methods do
-      delegate :default_truncation_length, to: :class
-
       def default_truncation_length
         DEFAULT_TRUNCATE_LENGTH
       end
@@ -47,6 +45,8 @@ module Material
     end
 
     included do
+      delegate :default_truncation_length, to: :class
+
       register_truncator(:title) { default_title.titleize }
 
       register_component(:parameterized_title) { title_value.underscore.parameterize }
