@@ -17,8 +17,7 @@ module Material
         register_truncator(key) { title.pluralize }
       end
 
-      def register_truncator(key, max_length = nil, &block)
-        max_length ||= default_truncation_length
+      def register_truncator(key, max_length = default_truncation_length, &block)
         register_component(key, max_length: max_length, &block)
         define_truncation_formatter(key)
         define_truncation_predicate(key)
@@ -39,9 +38,9 @@ module Material
         memoize method_name
       end
 
-      # def default_truncation_length
-      #   DEFAULT_TRUNCATE_LENGTH
-      # end
+      def default_truncation_length
+        DEFAULT_TRUNCATE_LENGTH
+      end
     end
 
     included do
