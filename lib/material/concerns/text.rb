@@ -11,6 +11,12 @@ module Material
         DEFAULT_TRUNCATE_LENGTH
       end
 
+      protected
+
+      def truncation_length(key)
+        public_send("#{key}_component".to_sym).options[:max_length] || default_truncation_length
+      end
+
       private
 
       def register_title_truncator(key)
@@ -36,10 +42,6 @@ module Material
         method_name = "#{key}_truncated?".to_sym
         define_method(method_name) { public_send("#{key}_value".to_sym).length > truncation_length(key) }
         memoize method_name
-      end
-
-      def truncation_length(key)
-        public_send("#{key}_component".to_sym).options[:max_length] || default_truncation_length
       end
     end
 
