@@ -44,7 +44,7 @@ module Material
     end
 
     included do
-      delegate :default_truncation_length, to: :class
+      delegate :truncation_length, to: :class
 
       register_truncator(:title) { default_title.titleize }
 
