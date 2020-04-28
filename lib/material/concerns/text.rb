@@ -4,7 +4,7 @@ module Material
   module Text
     extend ActiveSupport::Concern
 
-    DEFAULT_TRUNCATE_LENGTH = 50
+    DEFAULT_TRUNCATE_LENGTH = 100
 
     class_methods do
       private
@@ -36,6 +36,10 @@ module Material
           public_send("#{key}_value".to_sym).length > public_send("#{key}_component".to_sym).options[:max_length]
         end
         memoize method_name
+      end
+
+      def default_truncation_length
+        DEFAULT_TRUNCATE_LENGTH
       end
     end
 
