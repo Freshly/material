@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.7
+
+*Release Date*: 4/28/2020
+
+- Changed default truncate length and allow for changing via class method
+
 ## 0.3.6
 
 *Release Date*: 4/10/2020

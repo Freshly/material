@@ -3,7 +3,7 @@
 RSpec.describe Material::Text, type: :concern do
   include_context "with an example material"
 
-  let(:default_length) { described_class::DEFAULT_TRUNCATE_LENGTH }
+  let(:default_length) { nil }
 
   it { is_expected.to have_material_component(:title).with_options(max_length: default_length) }
   it { is_expected.to have_material_component(:parameterized_title) }
