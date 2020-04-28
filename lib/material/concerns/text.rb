@@ -4,7 +4,7 @@ module Material
   module Text
     extend ActiveSupport::Concern
 
-    DEFAULT_TRUNCATE_LENGTH = 100
+    DEFAULT_TRUNCATE_LENGTH = 50
 
     class_methods do
       private
