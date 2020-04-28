@@ -7,6 +7,14 @@ module Material
     DEFAULT_TRUNCATE_LENGTH = 50
 
     class_methods do
+      def default_truncation_length
+        DEFAULT_TRUNCATE_LENGTH
+      end
+
+      def truncation_length(key)
+        public_send("#{key}_component".to_sym).options[:max_length] || default_truncation_length
+      end
+
       private
 
       def register_title_truncator(key)
@@ -17,29 +25,27 @@ module Material
         register_truncator(key) { title.pluralize }
       end
 
-      def register_truncator(key, max_length = DEFAULT_TRUNCATE_LENGTH, &block)
+      def register_truncator(key, max_length = nil, &block)
         register_component(key, max_length: max_length, &block)
         define_truncation_formatter(key)
         define_truncation_predicate(key)
       end
 
       def define_truncation_formatter(key)
-        define_method(key) do
-          public_send("#{key}_value".to_sym).truncate(public_send("#{key}_component".to_sym).options[:max_length])
-        end
+        define_method(key) { public_send("#{key}_value".to_sym).truncate(truncation_length(key)) }
         memoize key
       end
 
       def define_truncation_predicate(key)
         method_name = "#{key}_truncated?".to_sym
-        define_method(method_name) do
-          public_send("#{key}_value".to_sym).length > public_send("#{key}_component".to_sym).options[:max_length]
-        end
+        define_method(method_name) { public_send("#{key}_value".to_sym).length > truncation_length(key) }
         memoize method_name
       end
     end
 
     included do
+      delegate :truncation_length, to: :class
+
       register_truncator(:title) { default_title.titleize }
 
       register_component(:parameterized_title) { title_value.underscore.parameterize }
