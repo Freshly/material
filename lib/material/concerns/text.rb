@@ -28,19 +28,18 @@ module Material
       end
 
       def define_truncation_formatter(key)
-        define_method(key) do
-          truncate_length = public_send("#{key}_component".to_sym).options[:max_length] || default_truncation_length
-          public_send("#{key}_value".to_sym).truncate(truncate_length)
-        end
+        define_method(key) { public_send("#{key}_value".to_sym).truncate(truncate_length(key)) }
         memoize key
       end
 
       def define_truncation_predicate(key)
         method_name = "#{key}_truncated?".to_sym
-        define_method(method_name) do
-          public_send("#{key}_value".to_sym).length > public_send("#{key}_component".to_sym).options[:max_length]
-        end
+        define_method(method_name) { public_send("#{key}_value".to_sym).length > truncation_length(key) }
         memoize method_name
+      end
+
+      def truncation_length(key)
+        public_send("#{key}_component".to_sym).options[:max_length] || default_truncation_length
       end
     end
 
