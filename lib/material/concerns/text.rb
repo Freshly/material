@@ -7,6 +7,12 @@ module Material
     DEFAULT_TRUNCATE_LENGTH = 50
 
     class_methods do
+      delegate :default_truncation_length, to: :class
+
+      def default_truncation_length
+        DEFAULT_TRUNCATE_LENGTH
+      end
+
       private
 
       def register_title_truncator(key)
@@ -26,7 +32,8 @@ module Material
 
       def define_truncation_formatter(key)
         define_method(key) do
-          public_send("#{key}_value".to_sym).truncate(public_send("#{key}_component".to_sym).options[:max_length])
+          truncate_length = public_send("#{key}_component".to_sym).options[:max_length] || default_truncation_length
+          public_send("#{key}_value".to_sym).truncate(truncate_length)
         end
         memoize key
       end
@@ -38,10 +45,6 @@ module Material
         end
         memoize method_name
       end
-
-      # def default_truncation_length
-      #   DEFAULT_TRUNCATE_LENGTH
-      # end
     end
 
     included do
