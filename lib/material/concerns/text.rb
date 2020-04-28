@@ -28,7 +28,7 @@ module Material
       end
 
       def define_truncation_formatter(key)
-        define_method(key) { public_send("#{key}_value".to_sym).truncate(truncate_length(key)) }
+        define_method(key) { public_send("#{key}_value".to_sym).truncate(truncation_length(key)) }
         memoize key
       end
 
