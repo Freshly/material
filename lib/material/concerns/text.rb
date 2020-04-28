@@ -11,8 +11,6 @@ module Material
         DEFAULT_TRUNCATE_LENGTH
       end
 
-      protected
-
       def truncation_length(key)
         public_send("#{key}_component".to_sym).options[:max_length] || default_truncation_length
       end
