@@ -24,7 +24,6 @@ module Material
       end
 
       def register_truncator(key, max_length = nil, &block)
-        max_length ||= default_truncation_length
         register_component(key, max_length: max_length, &block)
         define_truncation_formatter(key)
         define_truncation_predicate(key)
