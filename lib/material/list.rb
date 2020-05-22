@@ -36,6 +36,9 @@ module Material
       end
     end
 
+    # Both class and instance need this delegation
+    delegate_missing_to :item_class
+
     def contextualize(parent)
       @context_parent = parent
     end
