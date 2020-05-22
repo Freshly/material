@@ -5,8 +5,6 @@ module Material
     extend ActiveSupport::Concern
 
     included do
-      register_component :filter
-      register_component :filter_default
       register_materialize_component(:parent, :default_parent)
       register_path_component(:path, :singular_route_key)
       register_path_component(:index_path, :route_key)

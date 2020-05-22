@@ -15,6 +15,7 @@ RSpec.describe Material::List, type: :material do
   it { is_expected.to include_module Material::Mount }
   it { is_expected.to include_module Material::Collection }
   it { is_expected.to include_module Material::Format }
+  it { is_expected.to include_module Material::Filter }
 
   describe ".for" do
     include_context "with an example list"

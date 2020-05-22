@@ -13,6 +13,7 @@ module Material
     include Material::Mount
     include Material::Collection
     include Material::Format
+    include Material::Filter
 
     class << self
       def for(object)
