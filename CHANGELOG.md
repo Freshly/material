@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.9
+
+*Release Date*: 5/21/
+
+- Delegate missing on List to item_class for both instance and class (was just class before)
+
 ## 0.3.8
 
 *Release Date*: 5/21/2020
