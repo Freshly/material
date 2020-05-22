@@ -4,8 +4,6 @@ RSpec.describe Material::Site, type: :concern do
   include_context "with an example material"
 
   it { is_expected.to have_material_component :parent }
-  it { is_expected.to have_material_component :filter }
-  it { is_expected.to have_material_component :filter_default }
   it { is_expected.to have_material_component :path }
   it { is_expected.to have_material_component :index_path }
 
