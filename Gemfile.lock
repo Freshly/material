@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    material (0.3.7)
+    material (0.3.8)
       activesupport (>= 5.2.1)
       spicery (>= 0.21.0, < 1.0)
 

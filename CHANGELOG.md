@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.3.8
+
+*Release Date*: 5/21/2020
+
+- Cleaned up Filter 
+  - was in Material and List, now only in List
+  - removed "filter_default" as that is Facet's responsibility now
+  - renamed to filter_field
+  - added filter_values to explicitly state filter options
+
 ## 0.3.7
 
 *Release Date*: 4/28/2020
